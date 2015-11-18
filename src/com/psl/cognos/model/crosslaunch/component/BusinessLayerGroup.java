@@ -15,4 +15,17 @@ public enum BusinessLayerGroup {
       return null;
     }
   }
+  
+  public String getVendorName() {
+    switch (this) {
+    case HUAWEI_KPIS:
+      return "Huawei";
+    case ERICSSON_KPIS:
+      return "Ericsson";
+    case ALU_KPIS:
+      return "ALU";
+    default:
+      return null;
+    }
+  }
 }
