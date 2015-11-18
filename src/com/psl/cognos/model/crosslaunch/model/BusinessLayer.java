@@ -59,7 +59,7 @@ public class BusinessLayer {
         result = expr.evaluate(nodes.item(i), XPathConstants.NODESET);
         NodeList nodeList1 = (NodeList) result;
         String businessQuerySubjectName = nodeList1.item(0).getNodeValue();
-        LOGGER.info(businessQuerySubjectName);
+        // LOGGER.info(businessQuerySubjectName);
 
         Element element = (Element) nodes.item(i);
         NodeList queryItemNodeList = element.getElementsByTagName("queryItem"); // queryItem
@@ -128,10 +128,6 @@ public class BusinessLayer {
             "D:/development/_assignment/CognosModel-CrossLaunch/output/"
                 + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
       }
-    }
-
-    for (int i = 0; i < ROWS.size(); i++) {
-      System.out.println(ROWS.get(i).toString());
     }
   }
 }
