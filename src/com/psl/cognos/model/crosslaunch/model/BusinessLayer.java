@@ -13,7 +13,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.psl.cognos.model.crosslaunch.component.BusinessLayerGroup;
+import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
+import com.psl.cognos.model.crosslaunch.component.DomainKnowledge;
+import com.psl.cognos.model.crosslaunch.component.DomainKnowledge.Technology;
+import com.psl.cognos.model.crosslaunch.parser.Parser;
 
 public class BusinessLayer {
   private Node node;
@@ -35,9 +39,10 @@ public class BusinessLayer {
     String businessKpiGroup = null;
     String businessFolderName = "Hourly KPIs"; // static
 
-    BusinessLayerGroup BUSINESS_GROUP[] = BusinessLayerGroup.values();
-    for (int a = 0; a < BUSINESS_GROUP.length; a++) {
-      businessKpiGroup = BUSINESS_GROUP[a].getName();
+    BusinessLayerGroup BUSINESS_GROUPS[] = BusinessLayerGroup.values();
+    for (int a = 0; a < BUSINESS_GROUPS.length; a++) {
+      BusinessLayerGroup BUSINESS_GROUP = BUSINESS_GROUPS[a];
+      businessKpiGroup = BUSINESS_GROUP.getName();
 
       String querySubjectXpath = "namespace[name='" + businessKpiGroup
           + "']/folder[name='" + businessFolderName
@@ -54,7 +59,7 @@ public class BusinessLayer {
         result = expr.evaluate(nodes.item(i), XPathConstants.NODESET);
         NodeList nodeList1 = (NodeList) result;
         String businessQuerySubjectName = nodeList1.item(0).getNodeValue();
-        // LOGGER.info(businessQuerySubjectName);
+        LOGGER.info(businessQuerySubjectName);
 
         Element element = (Element) nodes.item(i);
         NodeList queryItemNodeList = element.getElementsByTagName("queryItem"); // queryItem
@@ -68,29 +73,60 @@ public class BusinessLayer {
           nodeList1 = (NodeList) result;
           String businessQueryItemName = nodeList1.item(0).getNodeValue();
 
-          String fqn = "[%s].[%s].[%s]";
-          fqn = String.format(fqn, businessKpiGroup, businessQuerySubjectName,
-              businessQueryItemName);
+          String fqnPath = "[%s].[%s]";
+          fqnPath = String.format(fqnPath, businessKpiGroup, businessQuerySubjectName);
 
           // Expression -> refobj
-          CounterReferences counterReference = new CounterReferences();
+          CounterReferences counterReferences = new CounterReferences();
           expr = xpath.compile("expression/refobj/text()");
           result = expr.evaluate(queryItemNode, XPathConstants.NODESET);
           nodeList1 = (NodeList) result;
           for (int k = 0; k < nodeList1.getLength(); k++) {
             Node node = nodeList1.item(k);
-            counterReference.add(node.getNodeValue());
+            String counter = node.getNodeValue();
+            // LOGGER.info(counter);
+            counterReferences.add(new CounterReference(counter));
             numOfCounters +=1 ;
           }
 
+          // Entity Identifier
+          StringBuffer fqnEntityIdentifier = new StringBuffer(); 
+          fqnEntityIdentifier.append("[").append(BUSINESS_GROUP.getVendorName()).append("]");
+          fqnEntityIdentifier.append(".");
+          Technology _technology = DomainKnowledge.Technology.getTechnology(businessQuerySubjectName);
+          fqnEntityIdentifier.append("[").append(_technology.getPresentationSegment()).append("]");
+          fqnEntityIdentifier.append(".");
+          fqnEntityIdentifier.append("[").append(_technology.getEntityIdentifier()).append("]");
+          
+          // Hour Key
+          StringBuffer fqnHourKey = new StringBuffer();
+          fqnHourKey.append("[").append(BUSINESS_GROUP.getVendorName()).append("]");
+          fqnHourKey.append(".");
+          fqnHourKey.append("[Time]");
+          fqnHourKey.append(".");
+          fqnHourKey.append("[Hour Key Start]");
+          fqnHourKey.append(".");
+          
           BusinessLayerRow ROW = new BusinessLayerRow(businessQueryItemName,
-              fqn, counterReference);
+              fqnPath, counterReferences, fqnEntityIdentifier.toString(), fqnHourKey.toString());
           ROWS.add(ROW);
         }
 
+        // Status
         LOGGER.info(String.format(
-            "On querySubject %s found %d KPIs and %d Counters.",
+            "On querySubject '%s' found %d KPIs and %d Counters.",
             businessQuerySubjectName, queryItemNodeList.getLength(), numOfCounters));
+        
+        // Write to file
+        ArrayList<String> _ROWS = new ArrayList<String>();
+        _ROWS.add("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
+        for (int z = 0; z < ROWS.size(); z++) {
+          _ROWS.add(ROWS.get(z).toString());
+        }
+        
+        Parser.writeToFile(
+            "D:/development/_assignment/CognosModel-CrossLaunch/output/"
+                + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
       }
     }
 
