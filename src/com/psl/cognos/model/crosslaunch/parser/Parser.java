@@ -77,4 +77,25 @@ public class Parser {
       ex.printStackTrace();
     }
   }
+  
+  public static String getFqnPath(String val) {
+    StringBuilder fqnPath = new StringBuilder();
+    String parts[] = val.split("\\.");
+    int limit = (parts.length - 1);
+    for (int i = 0; i < limit; i++) {
+      if (i == (limit - 1)) {
+        fqnPath.append(parts[i]);
+      } else {
+        fqnPath.append(parts[i]).append(".");
+      }
+    }
+    return fqnPath.toString();
+  }
+  
+  public static String getFqnName(String val) {
+    // LOGGER.info(val);
+    String parts[] = val.split("\\.");
+    // LOGGER.info(Integer.toString(parts.length));
+    return parts[parts.length - 1];
+  }
 }
