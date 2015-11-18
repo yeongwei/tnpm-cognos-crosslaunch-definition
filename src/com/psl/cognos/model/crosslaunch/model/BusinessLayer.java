@@ -36,6 +36,10 @@ public class BusinessLayer {
      */
 
     ArrayList<BusinessLayerRow> ROWS = new ArrayList<BusinessLayerRow>();
+    
+    ArrayList<String> _ROWS = new ArrayList<String>();
+    _ROWS.add("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
+         
     String businessKpiGroup = null;
     String businessFolderName = "Hourly KPIs"; // static
 
@@ -116,18 +120,16 @@ public class BusinessLayer {
         LOGGER.info(String.format(
             "On querySubject '%s' found %d KPIs and %d Counters.",
             businessQuerySubjectName, queryItemNodeList.getLength(), numOfCounters));
-        
-        // Write to file
-        ArrayList<String> _ROWS = new ArrayList<String>();
-        _ROWS.add("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
-        for (int z = 0; z < ROWS.size(); z++) {
-          _ROWS.add(ROWS.get(z).toString());
-        }
-        
-        Parser.writeToFile(
-            "D:/development/_assignment/CognosModel-CrossLaunch/output/"
-                + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
       }
     }
+    
+    // Write to file
+    for (int z = 0; z < ROWS.size(); z++) {
+      _ROWS.add(ROWS.get(z).toString());
+    }
+    
+    Parser.writeToFile(
+        "D:/development/_assignment/CognosModel-CrossLaunch/output/"
+            + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
   }
 }

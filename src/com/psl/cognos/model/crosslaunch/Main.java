@@ -42,17 +42,17 @@ public class Main {
           .getElementsByTagName(ModelNode.NAME.getName());
       Node node0 = nodeList.item(0);
 
+      if (node0.getTextContent().equals(ModelValue.BUSINESS_LAYER.getName())) {
+        LOGGER.info("About to run Business Layer.");
+        new BusinessLayer(node).run();
+      }
+      
       if (node0.getTextContent()
           .equals(ModelValue.PRESENTATION_LAYER.getName())) {
         LOGGER.info("About to run Presentation Layer.");
         PresentationLayer presentationLayer = new PresentationLayer(node);
         // presentationLayer.enable()
         presentationLayer.run();
-      }
-
-      if (node0.getTextContent().equals(ModelValue.BUSINESS_LAYER.getName())) {
-        LOGGER.info("About to run Business Layer.");
-        new BusinessLayer(node).run();
       }
     }
   }

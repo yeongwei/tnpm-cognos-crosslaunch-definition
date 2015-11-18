@@ -22,7 +22,7 @@ import com.psl.cognos.model.crosslaunch.component.Cube;
 public class Parser {
 
   private static Logger LOGGER = Logger.getLogger(Parser.class.getName());
-      
+
   public static String getFileName(String prefix) {
     String fileName = prefix;
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
@@ -60,7 +60,7 @@ public class Parser {
 
     return x;
   }
-  
+
   public static void writeToFile(String fileName, ArrayList<String> content) {
     File file = new File(fileName);
     FileWriter fw;
@@ -73,12 +73,13 @@ public class Parser {
         bw.write(content.get(i) + "\n");
       }
       bw.close();
-      LOGGER.info(String.format("Finished writting into %s.", fileName));
+      LOGGER.info(String.format("Finished writting into %d rows into %s.",
+          content.size(), fileName));
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
-  
+
   public static String getFqnPath(String val) {
     StringBuilder fqnPath = new StringBuilder();
     String parts[] = val.split("\\.");
@@ -92,7 +93,7 @@ public class Parser {
     }
     return fqnPath.toString();
   }
-  
+
   public static String getFqnName(String val) {
     // LOGGER.info(val);
     String parts[] = val.split("\\.");
