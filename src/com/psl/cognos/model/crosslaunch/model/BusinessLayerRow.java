@@ -3,22 +3,32 @@ package com.psl.cognos.model.crosslaunch.model;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 
 public class BusinessLayerRow {
-  final String kpiName;
-  final String fqn;
-  final CounterReferences counterReference;
-  
-  public BusinessLayerRow(String kpiName, String fqn, CounterReferences counterReference) {
-    this.kpiName = kpiName;
-    this.fqn = fqn;
-    this.counterReference = counterReference;
+  // fqn = fqnPath + [fqnName]
+  final String fqnName;
+  final String fqnPath;
+
+  final CounterReferences counterReferences;
+
+  final String fqnEntityIdentifier;
+  final String fqnHourKey;
+
+  public BusinessLayerRow(String fqnName, String fqnPath,
+      CounterReferences counterReferences, String fqnEntityIdentifier, String fqnHourKey) {
+    this.fqnName = fqnName;
+    this.fqnPath = fqnPath;
+    this.counterReferences = counterReferences;
+    this.fqnEntityIdentifier = fqnEntityIdentifier;
+    this.fqnHourKey = fqnHourKey;
   }
-  
+
   @Override
   public String toString() {
     StringBuffer s = new StringBuffer();
-    s.append(this.kpiName).append(",");
-    s.append(this.fqn).append(",");
-    s.append(this.counterReference.toString());
+    s.append(this.fqnName).append(",");
+    s.append(this.fqnPath).append(",");
+    s.append(this.counterReferences.toString()).append(",");
+    s.append(this.fqnEntityIdentifier).append(",");
+    s.append(this.fqnHourKey);
     return s.toString();
   }
 }
