@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class CounterReferences {
 
-  private ArrayList<String> x = new ArrayList<String>();
+  private ArrayList<CounterReference> x = new ArrayList<CounterReference>();
 
-  public boolean add(String counterFqn) {
-    if (x.contains(counterFqn)) {
+  public boolean add(CounterReference counterReference) {
+    if (x.contains(counterReference)) {
       return false;
     } else {
-      x.add(counterFqn);
+      x.add(counterReference);
       return true;
     }
   }
   
-  public boolean remove(String counterFqn) {
-    return x.remove(counterFqn);
+  public boolean remove(CounterReference counterReference) {
+    return x.remove(counterReference);
   }
   
   @Override
