@@ -109,7 +109,6 @@ public class BusinessLayer {
           fqnHourKey.append("[Time]");
           fqnHourKey.append(".");
           fqnHourKey.append("[Hour Key Start]");
-          fqnHourKey.append(".");
           
           BusinessLayerRow ROW = new BusinessLayerRow(businessQueryItemName,
               fqnPath, counterReferences, fqnEntityIdentifier.toString(), fqnHourKey.toString());
