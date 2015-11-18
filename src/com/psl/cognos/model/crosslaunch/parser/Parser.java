@@ -73,6 +73,7 @@ public class Parser {
         bw.write(content.get(i) + "\n");
       }
       bw.close();
+      LOGGER.info(String.format("Finished writting into %s.", fileName));
     } catch (Exception ex) {
       ex.printStackTrace();
     }
