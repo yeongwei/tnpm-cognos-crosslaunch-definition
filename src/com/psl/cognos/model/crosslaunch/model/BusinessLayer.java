@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.psl.cognos.model.crosslaunch.component.BusinessLayerGroup;
+import com.psl.cognos.model.crosslaunch.component.CounterReferences;
+
 public class BusinessLayer {
   private Node node;
   private static Logger LOGGER = Logger
@@ -70,7 +73,7 @@ public class BusinessLayer {
               businessQueryItemName);
 
           // Expression -> refobj
-          CounterReference counterReference = new CounterReference();
+          CounterReferences counterReference = new CounterReferences();
           expr = xpath.compile("expression/refobj/text()");
           result = expr.evaluate(queryItemNode, XPathConstants.NODESET);
           nodeList1 = (NodeList) result;

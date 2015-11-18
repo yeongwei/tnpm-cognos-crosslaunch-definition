@@ -17,7 +17,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.psl.cognos.model.crosslaunch.model.Cube;
+import com.psl.cognos.model.crosslaunch.component.Cube;
 
 public class Parser {
 

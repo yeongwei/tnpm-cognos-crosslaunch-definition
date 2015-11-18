@@ -1,11 +1,13 @@
 package com.psl.cognos.model.crosslaunch.model;
 
+import com.psl.cognos.model.crosslaunch.component.CounterReferences;
+
 public class BusinessLayerRow {
   final String kpiName;
   final String fqn;
-  final CounterReference counterReference;
+  final CounterReferences counterReference;
   
-  public BusinessLayerRow(String kpiName, String fqn, CounterReference counterReference) {
+  public BusinessLayerRow(String kpiName, String fqn, CounterReferences counterReference) {
     this.kpiName = kpiName;
     this.fqn = fqn;
     this.counterReference = counterReference;

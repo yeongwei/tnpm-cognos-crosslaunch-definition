@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import org.w3c.dom.Node;
 
+import com.psl.cognos.model.crosslaunch.component.Cube;
+import com.psl.cognos.model.crosslaunch.component.Vendor;
 import com.psl.cognos.model.crosslaunch.parser.Parser;
 
 public class PresentationLayer {
