@@ -26,6 +26,7 @@ import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
 import com.psl.cognos.model.crosslaunch.parser.CrossLaunchDefinitionWriter;
+import com.psl.cognos.model.crosslaunch.parser.TestWriter;
 
 public class Main {
 
@@ -85,6 +86,8 @@ public class Main {
 
     // LOOKUP STORES
     AlarmStore alarmStore = alarmThreshold.getAlarmStore();
+    // alarmStore.dump();
+
     HashMap<String, String> presentationStore = presentationLayer.asHashMap();
     // for (Object key : presentationStore.keySet()) {
     // System.out.println(key);
@@ -105,12 +108,12 @@ public class Main {
       BusinessLayerRow BUSINESS_ROW = BUSINESS_ROWS.get(q);
 
       // LOOKUP FOR AlARM NAME
-      if (alarmStore.has(BUSINESS_ROW.fqnName)) {
-        AlarmKnowledge alarmKnowledge = alarmStore.get(BUSINESS_ROW.fqnName);
+      if (alarmStore.has(BUSINESS_ROW.uniqueKey)) {
+        AlarmKnowledge alarmKnowledge = alarmStore.get(BUSINESS_ROW.uniqueKey);
         CROSSLAUNCH_DEFINITION.setAlarmName(alarmKnowledge.alarmName);
         numOfAlarmsFound += 1;
       } else {
-        // LOGGER.finest(String.format("No Alarm Name found for KPI '%s'.",
+        // LOGGER.finest(String.format("Skipping for KPI '%s'.",
         // BUSINESS_ROW.fqnName));
         numOfAlarmsNotFound += 1;
         continue;
@@ -169,9 +172,17 @@ public class Main {
     CrossLaunchDefinitionWriter crossLaunchDefinitionWriter = new CrossLaunchDefinitionWriter();
     crossLaunchDefinitionWriter
         .setMode(CrossLaunchDefinitionWriter.Mode.PRODUCTION);
+    crossLaunchDefinitionWriter.setDelimiter("|");
     crossLaunchDefinitionWriter
         .makeFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/CrossLaunchDefinition-");
     crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
     crossLaunchDefinitionWriter.write();
+
+    LOGGER.info("About to write Test file.");
+    TestWriter testWriter = new TestWriter();
+    testWriter
+        .makeFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/Test-");
+    testWriter.process(CROSSLAUNCH_DEFINITIONS);
+    testWriter.write();
   }
 }

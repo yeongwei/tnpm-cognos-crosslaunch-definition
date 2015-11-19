@@ -49,17 +49,27 @@ public class AlarmThreshold extends ExcelParser {
 
         if (kpiName != null && kpiNameInModel != null && alarmName != null) {
           String kpiNameStr = kpiName.getStringCellValue();
+          kpiNameStr = kpiNameStr.trim();
           String kpiNameInModelStr = kpiNameInModel.getStringCellValue();
+          kpiNameInModelStr = kpiNameInModelStr.trim();
           String alarmNameStr = alarmName.getStringCellValue();
+          alarmNameStr = alarmNameStr.trim();
 
-          // LOGGER.info(String.format("Found %s|_|%s|_|%s", kpiNameStr,
-          // kpiNameInModelStr, alarmNameStr));
+          if (!kpiNameStr.isEmpty() && !kpiNameInModelStr.isEmpty() && !alarmNameStr.isEmpty()) {
+             LOGGER.info(String.format("Found %s|_|%s|_|%s", kpiNameStr,
+             kpiNameInModelStr, alarmNameStr));
+            String uniqueKey = AlARM_MODEL.getVendorName() + "-"
+                + kpiNameInModelStr;
 
-          AlarmKnowledge alarmKnowledge = new AlarmKnowledge(kpiNameStr,
-              kpiNameInModelStr, alarmNameStr);
-          alarmStore.add(alarmKnowledge);
+            AlarmKnowledge alarmKnowledge = new AlarmKnowledge(kpiNameStr,
+                kpiNameInModelStr, alarmNameStr, uniqueKey);
+            alarmStore.add(alarmKnowledge);
 
-          numberOfEntries += 1;
+            numberOfEntries += 1;
+          } else {
+            numberOfNilEntries += 1;
+          }
+
         } else {
           numberOfNilEntries += 1;
         }
@@ -67,7 +77,8 @@ public class AlarmThreshold extends ExcelParser {
       }
     }
 
-    LOGGER.info(String.format("Processed %d Alarm Threshold entries and found %d NIL entires.",
+    LOGGER.info(String.format(
+        "Processed %d Alarm Threshold entries and found %d NIL entires.",
         numberOfEntries, numberOfNilEntries));
   }
 }

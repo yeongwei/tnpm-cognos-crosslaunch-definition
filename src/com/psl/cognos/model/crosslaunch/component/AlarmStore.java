@@ -8,26 +8,26 @@ public class AlarmStore {
   private HashMap<String, AlarmKnowledge> store = new HashMap<String, AlarmKnowledge>();
 
   public boolean add(AlarmKnowledge alarmKnowledge) {
-    if (store.containsKey(alarmKnowledge.kpiNameInModel)
+    if (store.containsKey(alarmKnowledge.uniqueKey)
         && store.containsValue(alarmKnowledge)) {
       return false;
     } else {
-      store.put(alarmKnowledge.kpiNameInModel, alarmKnowledge);
+      store.put(alarmKnowledge.uniqueKey, alarmKnowledge);
       return true;
     }
   }
 
-  public AlarmKnowledge get(String kpiNameInModel) {
-    if (store.containsKey(kpiNameInModel)) {
-      return store.get(kpiNameInModel);
+  public AlarmKnowledge get(String uniqueKey) {
+    if (store.containsKey(uniqueKey)) {
+      return store.get(uniqueKey);
     } else {
       // LOGGER.finest("KPI Name In Model is required here.");
       return null;
     }
   }
 
-  public boolean has(String kpiNameInModel) {
-    if (store.containsKey(kpiNameInModel))  {
+  public boolean has(String uniqueKey) {
+    if (store.containsKey(uniqueKey))  {
       return true; 
     } else {
       // LOGGER.finest("KPI Name In Model is required here.");

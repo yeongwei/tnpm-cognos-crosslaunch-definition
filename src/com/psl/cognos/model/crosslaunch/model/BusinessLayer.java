@@ -32,7 +32,7 @@ public class BusinessLayer {
   public ArrayList<BusinessLayerRow> getBusinessLayerRows() {
     return this.businessLayerRows;
   }
-  
+
   public void run() throws Exception {
     /*
      * Parser.parseModel(node,
@@ -118,9 +118,15 @@ public class BusinessLayer {
           fqnHourKey.append(".");
           fqnHourKey.append("[Hour key Start]");
 
+          // Unique Key = Vendor + kpiName
+          StringBuffer uniqueKey = new StringBuffer();
+          uniqueKey.append(BUSINESS_GROUP.getVendorName());
+          uniqueKey.append("-");
+          uniqueKey.append(businessQueryItemName);
+
           BusinessLayerRow ROW = new BusinessLayerRow(businessQueryItemName,
               fqnPath, counterReferences, fqnEntityIdentifier.toString(),
-              fqnHourKey.toString());
+              fqnHourKey.toString(), uniqueKey.toString());
           businessLayerRows.add(ROW);
         }
 

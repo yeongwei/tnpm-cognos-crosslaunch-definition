@@ -25,6 +25,9 @@ public class Writer {
       file.createNewFile();
       fw = new FileWriter(file.getAbsoluteFile());
       bw = new BufferedWriter(fw);
+      if (header != null && !header.isEmpty()) {
+        bw.write(header + "\n");
+      }
       for (int i = 0; i < this.content.size(); i++) {
         bw.write(this.content.get(i) + "\n");
       }

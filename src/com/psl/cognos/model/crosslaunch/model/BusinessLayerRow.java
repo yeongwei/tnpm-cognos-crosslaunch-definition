@@ -11,14 +11,16 @@ public class BusinessLayerRow {
 
   public final String fqnEntityIdentifier;
   public final String fqnHourKey;
-
+  public final String uniqueKey;
+  
   public BusinessLayerRow(String fqnName, String fqnPath,
-      CounterReferences counterReferences, String fqnEntityIdentifier, String fqnHourKey) {
+      CounterReferences counterReferences, String fqnEntityIdentifier, String fqnHourKey, String uniqueKey) {
     this.fqnName = fqnName;
     this.fqnPath = fqnPath;
     this.counterReferences = counterReferences;
     this.fqnEntityIdentifier = fqnEntityIdentifier;
     this.fqnHourKey = fqnHourKey;
+    this.uniqueKey = uniqueKey;
   }
 
   @Override
@@ -28,7 +30,8 @@ public class BusinessLayerRow {
     s.append(this.fqnPath).append(",");
     s.append(this.counterReferences.toString()).append(",");
     s.append(this.fqnEntityIdentifier).append(",");
-    s.append(this.fqnHourKey);
+    s.append(this.fqnHourKey).append(",");
+    s.append(uniqueKey);
     return s.toString();
   }
 }
