@@ -27,6 +27,19 @@ public class CrosslaunchDefinition {
   // this.alarmName = alarmName;
   // }
   
+  @Override
+  public String toString() {
+    StringBuffer s = new StringBuffer();
+    s.append("ALARM NAME|_|").append(this.buKpiName).append("|_|");
+    s.append("KPI NAME|_|").append(this.buKpiName).append("|_|");
+    s.append("BUSINESS PATH|_|").append(this.buFqnPath).append("|_|");
+    s.append("PRESENTATION PATH|_|").append(this.prFqnPath).append("|_|");
+    s.append("ENTITY NAME|_|").append(this.buFqnEntityIdentifier).append("|_|");
+    s.append("HOUR KEY|_|").append(this.buFqnHourKey).append("|_|");
+    s.append("COUNTERS|_|").append(this.buCounterReferences);
+    return s.toString();
+  }
+  
   public void setBuKpiName(String buKpiName) {
     this.buKpiName = buKpiName;
   }
@@ -51,20 +64,28 @@ public class CrosslaunchDefinition {
     return this.buCounterReferences;
   }
   
+  public void setBuFqnEntityIdentifier(String buFqnEntityIdentifier) {
+    this.buFqnEntityIdentifier = buFqnEntityIdentifier;
+  }
+  
+  public String getBuFqnEntityIdentifier() {
+    return this.buFqnEntityIdentifier;
+  } 
+  
   public void setBuHourKey(String buFqnHourKey) {
     this.buFqnHourKey = buFqnHourKey;
   }
   
-  public String getbuFqnHourKey() {
+  public String getBuFqnHourKey() {
     return this.buFqnHourKey;
   } 
   
-  public void setBuPrFqnPath(String buFqnPath) {
-    this.buFqnPath = buFqnPath;
+  public void setBuPrFqnPath(String prFqnPath) {
+    this.prFqnPath = prFqnPath;
   }
   
-  public String getbuFqnPath() {
-    return this.buFqnPath;
+  public String getBuPrFqnPath() {
+    return this.prFqnPath;
   } 
   
   public void setAlarmName(String alarmName) {
