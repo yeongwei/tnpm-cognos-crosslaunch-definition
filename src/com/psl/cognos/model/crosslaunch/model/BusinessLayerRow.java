@@ -4,13 +4,13 @@ import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 
 public class BusinessLayerRow {
   // fqn = fqnPath + [fqnName]
-  final String fqnName;
-  final String fqnPath;
+  public final String fqnName;
+  public final String fqnPath;
 
-  final CounterReferences counterReferences;
+  public final CounterReferences counterReferences;
 
-  final String fqnEntityIdentifier;
-  final String fqnHourKey;
+  public final String fqnEntityIdentifier;
+  public final String fqnHourKey;
 
   public BusinessLayerRow(String fqnName, String fqnPath,
       CounterReferences counterReferences, String fqnEntityIdentifier, String fqnHourKey) {

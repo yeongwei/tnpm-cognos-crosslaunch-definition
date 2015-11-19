@@ -29,6 +29,10 @@ public class BusinessLayer {
     this.node = node;
   }
 
+  public ArrayList<BusinessLayerRow> getBusinessLayerRows() {
+    return this.businessLayerRows;
+  }
+  
   public void run() throws Exception {
     /*
      * Parser.parseModel(node,

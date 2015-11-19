@@ -1,6 +1,7 @@
 package com.psl.cognos.model.crosslaunch.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.w3c.dom.Node;
@@ -24,9 +25,18 @@ public class PresentationLayer {
     this.enabled = true;
     return this;
   }
-  
+
   public ArrayList<PresentationLayerRow> getPresentationLayerRows() {
     return this.presentationLayerRows;
+  }
+
+  public HashMap<String, String> asHashMap() {
+    HashMap<String, String> x = new HashMap<String, String>();
+    for (int i = 0; i < presentationLayerRows.size(); i++) {
+      PresentationLayerRow r = presentationLayerRows.get(i);
+      x.put(r.refObj, r.fqn);
+    }
+    return x;
   }
 
   public void run() throws Exception {
@@ -103,7 +113,7 @@ public class PresentationLayer {
     for (int z = 0; z < presentationLayerRows.size(); z++) {
       FILE.add(presentationLayerRows.get(z).toString());
     }
-    
+
     Parser.writeToFile(
         "D:/development/_assignment/CognosModel-CrossLaunch/output/"
             + Parser.getFileName("PresentationLayer-"), FILE);
