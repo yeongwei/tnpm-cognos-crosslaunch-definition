@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 import com.psl.cognos.model.crosslaunch.component.ModelNode;
 import com.psl.cognos.model.crosslaunch.component.ModelValue;
 import com.psl.cognos.model.crosslaunch.component.Property;
+import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
 
@@ -22,7 +23,15 @@ public class Main {
   private static Logger LOGGER = Logger.getLogger(Main.class.getName());
 
   public static void main(String args[]) throws Exception {
-    String modelFilePath = System.getProperty(Property.MODEL_FILE.getName());
+
+    // GLOBAL MEMBER
+    BusinessLayer businessLayer = null;
+    PresentationLayer presentationLayer = null;
+    AlarmThreshold alarmThreshold = null;
+    
+    // PARSE COGNOS MODEL LAYERS
+    String modelFilePath = System.getProperty(Property.COGNOS_MODEL_FILE
+        .getName());
     File modelFile = new File(modelFilePath);
 
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -34,8 +43,7 @@ public class Main {
         .getName());
 
     // LOGGER.info(Integer.toString(nameSpaceList.getLength()));
-    BusinessLayer businessLayer = null;
-    PresentationLayer presentationLayer = null;
+
     for (int pointer = 0; pointer < nameSpaceList.getLength(); pointer++) {
       Node node = nameSpaceList.item(pointer);
 
@@ -46,17 +54,22 @@ public class Main {
 
       if (node0.getTextContent().equals(ModelValue.BUSINESS_LAYER.getName())) {
         LOGGER.info("About to run Business Layer.");
-        businessLayer = new BusinessLayer(node);
-        businessLayer.run();
+        // businessLayer = new BusinessLayer(node);
+        // businessLayer.run();
       }
-      
+
       if (node0.getTextContent()
           .equals(ModelValue.PRESENTATION_LAYER.getName())) {
         LOGGER.info("About to run Presentation Layer.");
-        presentationLayer = new PresentationLayer(node);
-        presentationLayer.enable();
-        presentationLayer.run();
+        // presentationLayer = new PresentationLayer(node);
+        // presentationLayer.enable();
+        // presentationLayer.run();
       }
     }
+
+    // PARSE ALARM THRESHOLD
+    String alarmFilePath = System.getProperty(Property.ALARM_MODEL_FILE
+        .getName());
+    alarmThreshold = new AlarmThreshold(alarmFilePath);
   }
 }
