@@ -12,16 +12,21 @@ import com.psl.cognos.model.crosslaunch.parser.Parser;
 public class PresentationLayer {
   private boolean enabled = false;
   private Node node;
+  private ArrayList<PresentationLayerRow> presentationLayerRows = new ArrayList<PresentationLayerRow>();
   private static Logger LOGGER = Logger.getLogger(PresentationLayer.class
       .getName());
 
   public PresentationLayer(Node node) {
     this.node = node;
   }
-  
+
   public PresentationLayer enable() {
     this.enabled = true;
     return this;
+  }
+  
+  public ArrayList<PresentationLayerRow> getPresentationLayerRows() {
+    return this.presentationLayerRows;
   }
 
   public void run() throws Exception {
@@ -80,19 +85,25 @@ public class PresentationLayer {
       String shortCutXpath = xpath + "shortcut/name/text()";
       LOGGER.finest(String.format("About to parse %s.", shortCutXpath));
       ArrayList<Cube> shortCutNames = Parser.parseModel(node, shortCutXpath);
-      
+
       String shortCutRefObjXpath = xpath + "shortcut/refobj/text()";
-      ArrayList<Cube> shortCutRefObjs = Parser.parseModel(node, shortCutRefObjXpath);
-      
+      ArrayList<Cube> shortCutRefObjs = Parser.parseModel(node,
+          shortCutRefObjXpath);
+
       totalCount = (shortCutNames.size() + shortCutRefObjs.size()) / 2;
       for (int j = 0; j < totalCount; j++) {
         String fqn = "[%s].[%s]";
-        fqn = String.format(fqn, vendors[i].getName(), shortCutNames.get(j).value);
+        fqn = String.format(fqn, vendors[i].getName(),
+            shortCutNames.get(j).value);
         String refObj = shortCutRefObjs.get(j).value;
-        FILE.add((new PresentationLayerRow(fqn, refObj)).toString());
+        presentationLayerRows.add(new PresentationLayerRow(fqn, refObj));
       }
     }
 
+    for (int z = 0; z < presentationLayerRows.size(); z++) {
+      FILE.add(presentationLayerRows.get(z).toString());
+    }
+    
     Parser.writeToFile(
         "D:/development/_assignment/CognosModel-CrossLaunch/output/"
             + Parser.getFileName("PresentationLayer-"), FILE);

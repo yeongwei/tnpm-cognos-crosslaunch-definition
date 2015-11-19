@@ -34,6 +34,8 @@ public class Main {
         .getName());
 
     // LOGGER.info(Integer.toString(nameSpaceList.getLength()));
+    BusinessLayer businessLayer = null;
+    PresentationLayer presentationLayer = null;
     for (int pointer = 0; pointer < nameSpaceList.getLength(); pointer++) {
       Node node = nameSpaceList.item(pointer);
 
@@ -44,14 +46,15 @@ public class Main {
 
       if (node0.getTextContent().equals(ModelValue.BUSINESS_LAYER.getName())) {
         LOGGER.info("About to run Business Layer.");
-        new BusinessLayer(node).run();
+        businessLayer = new BusinessLayer(node);
+        businessLayer.run();
       }
       
       if (node0.getTextContent()
           .equals(ModelValue.PRESENTATION_LAYER.getName())) {
         LOGGER.info("About to run Presentation Layer.");
-        PresentationLayer presentationLayer = new PresentationLayer(node);
-        // presentationLayer.enable()
+        presentationLayer = new PresentationLayer(node);
+        presentationLayer.enable();
         presentationLayer.run();
       }
     }

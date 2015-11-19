@@ -21,6 +21,7 @@ import com.psl.cognos.model.crosslaunch.parser.Parser;
 
 public class BusinessLayer {
   private Node node;
+  private ArrayList<BusinessLayerRow> businessLayerRows = new ArrayList<BusinessLayerRow>();
   private static Logger LOGGER = Logger
       .getLogger(BusinessLayer.class.getName());
 
@@ -34,12 +35,9 @@ public class BusinessLayer {
      * "namespace[name='Huawei KPIs']/folder[name='Hourly KPIs']/querySubject[not(contains(name,'POHC'))]/queryItem/name/text()"
      * , true);
      */
-
-    ArrayList<BusinessLayerRow> ROWS = new ArrayList<BusinessLayerRow>();
-    
     ArrayList<String> _ROWS = new ArrayList<String>();
     _ROWS.add("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
-         
+
     String businessKpiGroup = null;
     String businessFolderName = "Hourly KPIs"; // static
 
@@ -78,7 +76,8 @@ public class BusinessLayer {
           String businessQueryItemName = nodeList1.item(0).getNodeValue();
 
           String fqnPath = "[%s].[%s]";
-          fqnPath = String.format(fqnPath, businessKpiGroup, businessQuerySubjectName);
+          fqnPath = String.format(fqnPath, businessKpiGroup,
+              businessQuerySubjectName);
 
           // Expression -> refobj
           CounterReferences counterReferences = new CounterReferences();
@@ -90,43 +89,50 @@ public class BusinessLayer {
             String counter = node.getNodeValue();
             // LOGGER.info(counter);
             counterReferences.add(new CounterReference(counter));
-            numOfCounters +=1 ;
+            numOfCounters += 1;
           }
 
           // Entity Identifier
-          StringBuffer fqnEntityIdentifier = new StringBuffer(); 
-          fqnEntityIdentifier.append("[").append(BUSINESS_GROUP.getVendorName()).append("]");
+          StringBuffer fqnEntityIdentifier = new StringBuffer();
+          fqnEntityIdentifier.append("[")
+              .append(BUSINESS_GROUP.getVendorName()).append("]");
           fqnEntityIdentifier.append(".");
-          Technology _technology = DomainKnowledge.Technology.getTechnology(businessQuerySubjectName);
-          fqnEntityIdentifier.append("[").append(_technology.getPresentationSegment()).append("]");
+          Technology _technology = DomainKnowledge.Technology
+              .getTechnology(businessQuerySubjectName);
+          fqnEntityIdentifier.append("[")
+              .append(_technology.getPresentationSegment()).append("]");
           fqnEntityIdentifier.append(".");
-          fqnEntityIdentifier.append("[").append(_technology.getEntityIdentifier()).append("]");
-          
+          fqnEntityIdentifier.append("[")
+              .append(_technology.getEntityIdentifier()).append("]");
+
           // Hour Key
           StringBuffer fqnHourKey = new StringBuffer();
-          fqnHourKey.append("[").append(BUSINESS_GROUP.getVendorName()).append("]");
+          fqnHourKey.append("[").append(BUSINESS_GROUP.getVendorName())
+              .append("]");
           fqnHourKey.append(".");
           fqnHourKey.append("[Time]");
           fqnHourKey.append(".");
           fqnHourKey.append("[Hour Key Start]");
-          
+
           BusinessLayerRow ROW = new BusinessLayerRow(businessQueryItemName,
-              fqnPath, counterReferences, fqnEntityIdentifier.toString(), fqnHourKey.toString());
-          ROWS.add(ROW);
+              fqnPath, counterReferences, fqnEntityIdentifier.toString(),
+              fqnHourKey.toString());
+          businessLayerRows.add(ROW);
         }
 
         // Status
         LOGGER.info(String.format(
             "On querySubject '%s' found %d KPIs and %d Counters.",
-            businessQuerySubjectName, queryItemNodeList.getLength(), numOfCounters));
+            businessQuerySubjectName, queryItemNodeList.getLength(),
+            numOfCounters));
       }
     }
-    
+
     // Write to file
-    for (int z = 0; z < ROWS.size(); z++) {
-      _ROWS.add(ROWS.get(z).toString());
+    for (int z = 0; z < businessLayerRows.size(); z++) {
+      _ROWS.add(businessLayerRows.get(z).toString());
     }
-    
+
     Parser.writeToFile(
         "D:/development/_assignment/CognosModel-CrossLaunch/output/"
             + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
