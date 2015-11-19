@@ -2,6 +2,7 @@ package com.psl.cognos.model.crosslaunch;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +14,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.psl.cognos.model.crosslaunch.component.AlarmStore;
+import com.psl.cognos.model.crosslaunch.component.CounterReference;
+import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.ModelNode;
 import com.psl.cognos.model.crosslaunch.component.ModelValue;
 import com.psl.cognos.model.crosslaunch.component.Property;
@@ -77,27 +80,65 @@ public class Main {
     alarmThreshold = new AlarmThreshold(alarmFilePath);
     alarmThreshold.run();
 
+    // LOOKUP STORES
     AlarmStore alarmStore = alarmThreshold.getAlarmStore();
-    // alarmStore.dump();
+    HashMap<String, String> presentationStore = presentationLayer.asHashMap();
+    for (Object key : presentationStore.keySet()) {
+      System.out.println(key);
+    }
 
-    // LOOKUP FOR AlARM NAME
+    // STATS
     int numOfAlarmsFound = 0;
     int numOfAlarmsNotFound = 0;
+    int numOfPrFqnFound = 0;
+    int numOfPrFqnNotFound = 0;
+
     ArrayList<BusinessLayerRow> BUSINESS_ROWS = businessLayer
         .getBusinessLayerRows();
     for (int q = 0; q < BUSINESS_ROWS.size(); q++) {
+
       BusinessLayerRow BUSINESS_ROW = BUSINESS_ROWS.get(q);
+
+      // LOOKUP FOR AlARM NAME
       if (alarmStore.has(BUSINESS_ROW.fqnName)) {
         numOfAlarmsFound += 1;
       } else {
-        LOGGER.finest(String.format("No Alarm Name found for KPI '%s'.",
-            BUSINESS_ROW.fqnName));
+        // LOGGER.finest(String.format("No Alarm Name found for KPI '%s'.",
+        // BUSINESS_ROW.fqnName));
         numOfAlarmsNotFound += 1;
       }
+
+      // LOOK UP FOR PRESENTATION FQN
+      LOGGER.finest(String.format(
+          "About to lookup Presentation Path for '%s'.", BUSINESS_ROW.fqnPath));
+      if (presentationStore.containsKey(BUSINESS_ROW.fqnPath)) {
+        numOfPrFqnFound += 1;
+      } else {
+        numOfPrFqnNotFound += 1;
+      }
+
+      // LOOK UP FOR COUNTER
+      CounterReferences counterReferences = BUSINESS_ROW.counterReferences;
+      ArrayList<CounterReference> counterReferenceStore = counterReferences
+          .getStore();
+      ArrayList<CounterReference> counterReferenceStoreNew = new ArrayList<CounterReference>();
+      for (int r = 0; r < counterReferenceStore.size(); r++) {
+        CounterReference counterReference = counterReferenceStore.get(r);
+        if (presentationStore.containsKey(counterReference.fqnPath)) {
+          counterReference.setPresentationFqnPath(presentationStore
+              .get(counterReference.fqnPath));
+        }
+        counterReferenceStoreNew.add(counterReference);
+      }
+
     }
 
     LOGGER.info(String.format(
-        "There are %d Alarms found and %d Alarms not found.", numOfAlarmsFound,
+        "There are %d found and %d not found for Alarms.", numOfAlarmsFound,
         numOfAlarmsNotFound));
+
+    LOGGER.info(String.format(
+        "There are %d found and %d not found for Presentation FQN Path.",
+        numOfPrFqnFound, numOfPrFqnNotFound));
   }
 }

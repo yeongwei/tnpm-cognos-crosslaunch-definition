@@ -32,8 +32,12 @@ public class PresentationLayer {
 
   public HashMap<String, String> asHashMap() {
     HashMap<String, String> x = new HashMap<String, String>();
+    // LOGGER.finest(String.format("About to process %d Presentation mappings.",
+    // presentationLayerRows.size()));
     for (int i = 0; i < presentationLayerRows.size(); i++) {
       PresentationLayerRow r = presentationLayerRows.get(i);
+      // LOGGER.finest(String.format("About to create hash of '%s' to '%s'.",
+      // r.refObj, r.fqn));
       x.put(r.refObj, r.fqn);
     }
     return x;
@@ -76,6 +80,7 @@ public class PresentationLayer {
       String folderXpath = xpath + "folder[name='%s']/";
       folderXpath = String.format(folderXpath, "Hourly KPIs");
 
+      // FROM FOLDER
       String nameXpath = folderXpath + "shortcut/name/text()";
       LOGGER.finest(String.format("About to parse %s.", nameXpath));
       ArrayList<Cube> names = Parser.parseModel(node, nameXpath);
@@ -89,9 +94,10 @@ public class PresentationLayer {
         String fqn = "[%s].[%s]";
         fqn = String.format(fqn, vendors[i].getName(), names.get(j).value);
         String refObj = refObjs.get(j).value;
-        FILE.add((new PresentationLayerRow(fqn, refObj)).toString());
+        presentationLayerRows.add(new PresentationLayerRow(fqn, refObj));
       }
 
+      // NOT FROM FOLDER
       String shortCutXpath = xpath + "shortcut/name/text()";
       LOGGER.finest(String.format("About to parse %s.", shortCutXpath));
       ArrayList<Cube> shortCutNames = Parser.parseModel(node, shortCutXpath);
@@ -99,6 +105,11 @@ public class PresentationLayer {
       String shortCutRefObjXpath = xpath + "shortcut/refobj/text()";
       ArrayList<Cube> shortCutRefObjs = Parser.parseModel(node,
           shortCutRefObjXpath);
+
+      if (shortCutNames.size() != shortCutRefObjs.size()) {
+        throw new RuntimeException(
+            "The number of node name and refobjs mustbe the same.");
+      }
 
       totalCount = (shortCutNames.size() + shortCutRefObjs.size()) / 2;
       for (int j = 0; j < totalCount; j++) {
@@ -110,6 +121,8 @@ public class PresentationLayer {
       }
     }
 
+    LOGGER.finest(String.format("Found %d Presentation mappings.",
+        presentationLayerRows.size()));
     for (int z = 0; z < presentationLayerRows.size(); z++) {
       FILE.add(presentationLayerRows.get(z).toString());
     }

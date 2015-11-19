@@ -21,7 +21,7 @@ public class AlarmStore {
     if (store.containsKey(kpiNameInModel)) {
       return store.get(kpiNameInModel);
     } else {
-      LOGGER.finest("KPI Name In Model is required here.");
+      // LOGGER.finest("KPI Name In Model is required here.");
       return null;
     }
   }
@@ -30,7 +30,7 @@ public class AlarmStore {
     if (store.containsKey(kpiNameInModel))  {
       return true; 
     } else {
-      LOGGER.finest("KPI Name In Model is required here.");
+      // LOGGER.finest("KPI Name In Model is required here.");
       return false;
     }
   }

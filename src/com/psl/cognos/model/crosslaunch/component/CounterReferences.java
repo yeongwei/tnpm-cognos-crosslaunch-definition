@@ -19,6 +19,14 @@ public class CounterReferences {
     return x.remove(counterReference);
   }
   
+  public ArrayList<CounterReference> getStore() {
+    return this.x;
+  }
+  
+  public void setStore(ArrayList<CounterReference> x) {
+    this.x = x;
+  }
+  
   @Override
   public String toString() {
     StringBuilder s = new StringBuilder();
