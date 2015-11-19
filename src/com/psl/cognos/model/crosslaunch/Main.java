@@ -13,9 +13,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.psl.cognos.model.crosslaunch.component.AlarmKnowledge;
 import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
+import com.psl.cognos.model.crosslaunch.component.CrosslaunchDefinition;
 import com.psl.cognos.model.crosslaunch.component.ModelNode;
 import com.psl.cognos.model.crosslaunch.component.ModelValue;
 import com.psl.cognos.model.crosslaunch.component.Property;
@@ -23,6 +25,7 @@ import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
+import com.psl.cognos.model.crosslaunch.parser.CrossLaunchDefinitionWriter;
 
 public class Main {
 
@@ -83,9 +86,9 @@ public class Main {
     // LOOKUP STORES
     AlarmStore alarmStore = alarmThreshold.getAlarmStore();
     HashMap<String, String> presentationStore = presentationLayer.asHashMap();
-    for (Object key : presentationStore.keySet()) {
-      System.out.println(key);
-    }
+    // for (Object key : presentationStore.keySet()) {
+    // System.out.println(key);
+    // }
 
     // STATS
     int numOfAlarmsFound = 0;
@@ -93,27 +96,35 @@ public class Main {
     int numOfPrFqnFound = 0;
     int numOfPrFqnNotFound = 0;
 
+    ArrayList<CrosslaunchDefinition> CROSSLAUNCH_DEFINITIONS = new ArrayList<CrosslaunchDefinition>();
+
     ArrayList<BusinessLayerRow> BUSINESS_ROWS = businessLayer
         .getBusinessLayerRows();
     for (int q = 0; q < BUSINESS_ROWS.size(); q++) {
-
+      CrosslaunchDefinition CROSSLAUNCH_DEFINITION = new CrosslaunchDefinition();
       BusinessLayerRow BUSINESS_ROW = BUSINESS_ROWS.get(q);
 
       // LOOKUP FOR AlARM NAME
       if (alarmStore.has(BUSINESS_ROW.fqnName)) {
+        AlarmKnowledge alarmKnowledge = alarmStore.get(BUSINESS_ROW.fqnName);
+        CROSSLAUNCH_DEFINITION.setAlarmName(alarmKnowledge.alarmName);
         numOfAlarmsFound += 1;
       } else {
         // LOGGER.finest(String.format("No Alarm Name found for KPI '%s'.",
         // BUSINESS_ROW.fqnName));
         numOfAlarmsNotFound += 1;
+        continue;
       }
 
       // LOOK UP FOR PRESENTATION FQN
-      LOGGER.finest(String.format(
-          "About to lookup Presentation Path for '%s'.", BUSINESS_ROW.fqnPath));
+      // LOGGER.finest(String.format(
+      // "About to lookup Presentation Path for '%s'.", BUSINESS_ROW.fqnPath));
       if (presentationStore.containsKey(BUSINESS_ROW.fqnPath)) {
+        String presentationPath = presentationStore.get(BUSINESS_ROW.fqnPath);
+        CROSSLAUNCH_DEFINITION.setBuPrFqnPath(presentationPath);
         numOfPrFqnFound += 1;
       } else {
+        CROSSLAUNCH_DEFINITION.setBuPrFqnPath(BUSINESS_ROW.fqnPath);
         numOfPrFqnNotFound += 1;
       }
 
@@ -130,7 +141,20 @@ public class Main {
         }
         counterReferenceStoreNew.add(counterReference);
       }
+      CROSSLAUNCH_DEFINITION.setBuCounterReferences(counterReferences);
 
+      // SET REMAINING MEMBERS
+      CROSSLAUNCH_DEFINITION.setBuKpiName(BUSINESS_ROW.fqnName);
+      CROSSLAUNCH_DEFINITION.setBuFqnPath(BUSINESS_ROW.fqnPath);
+      CROSSLAUNCH_DEFINITION.setBuHourKey(BUSINESS_ROW.fqnHourKey);
+      CROSSLAUNCH_DEFINITION
+          .setBuFqnEntityIdentifier(BUSINESS_ROW.fqnEntityIdentifier);
+
+      CROSSLAUNCH_DEFINITIONS.add(CROSSLAUNCH_DEFINITION);
+    }
+
+    for (int d = 0; d < CROSSLAUNCH_DEFINITIONS.size(); d++) {
+      // LOGGER.finest(CROSSLAUNCH_DEFINITIONS.get(d).toString());
     }
 
     LOGGER.info(String.format(
@@ -140,5 +164,14 @@ public class Main {
     LOGGER.info(String.format(
         "There are %d found and %d not found for Presentation FQN Path.",
         numOfPrFqnFound, numOfPrFqnNotFound));
+
+    LOGGER.info("About to write Cross Launch Definition file.");
+    CrossLaunchDefinitionWriter crossLaunchDefinitionWriter = new CrossLaunchDefinitionWriter();
+    crossLaunchDefinitionWriter
+        .setMode(CrossLaunchDefinitionWriter.Mode.PRODUCTION);
+    crossLaunchDefinitionWriter
+        .makeFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/CrossLaunchDefinition-");
+    crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
+    crossLaunchDefinitionWriter.write();
   }
 }
