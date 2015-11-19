@@ -20,9 +20,9 @@ public class DomainKnowledge {
     public String getEntityIdentifier() {
       switch (this) {
       case TWO_G:
-        return "CELL ID";
+        return "Cell ID";
       case THREE_G:
-        return "CELL ID";
+        return "Cell ID";
       case FOUR_G:
         return "EutranCell ID";
       default:
@@ -33,11 +33,11 @@ public class DomainKnowledge {
     public String getPresentationSegment() {
       switch (this) {
       case TWO_G:
-        return "CELL 2G";
+        return "Cell 2G";
       case THREE_G:
-        return "CELL 3G";
+        return "Cell 3G";
       case FOUR_G:
-        return "CELL 4G";
+        return "Cell 4G";
       default:
         return null;
       }
