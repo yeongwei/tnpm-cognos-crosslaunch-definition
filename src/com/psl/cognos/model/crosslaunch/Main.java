@@ -11,6 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.component.ModelNode;
 import com.psl.cognos.model.crosslaunch.component.ModelValue;
 import com.psl.cognos.model.crosslaunch.component.Property;
@@ -68,8 +69,13 @@ public class Main {
     }
 
     // PARSE ALARM THRESHOLD
+    LOGGER.info("About to parse Alarm Threshold");
     String alarmFilePath = System.getProperty(Property.ALARM_MODEL_FILE
         .getName());
     alarmThreshold = new AlarmThreshold(alarmFilePath);
+    alarmThreshold.run();
+    
+    AlarmStore alarmStore = alarmThreshold.getAlarmStore();
+    alarmStore.dump();
   }
 }

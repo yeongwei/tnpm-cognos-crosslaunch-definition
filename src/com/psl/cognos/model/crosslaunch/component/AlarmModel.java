@@ -37,8 +37,9 @@ public enum AlarmModel {
   public int getAlarmNameColumnIndex() {
     switch (this) {
     case HUAWEI_HOURLY_ALARM:
-    case HUAWEI_DASHBOARD_HOURLY_ALARM:
       return 7;
+    case HUAWEI_DASHBOARD_HOURLY_ALARM:
+      return 9;
     default:
       return -1;
     }

@@ -10,4 +10,14 @@ public class AlarmKnowledge {
     this.kpiNameInModel = kpiNameInModel;
     this.alarmName = alarmName;
   }
+  
+  @Override
+  public String toString() {
+    StringBuffer s = new StringBuffer();
+    s.append(this.kpiName).append("|_|");
+    s.append(this.kpiNameInModel).append("|_|");
+    s.append(this.alarmName);
+    
+    return s.toString();
+  }
 }
