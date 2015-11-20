@@ -17,7 +17,7 @@ import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.DomainKnowledge;
 import com.psl.cognos.model.crosslaunch.component.DomainKnowledge.Technology;
-import com.psl.cognos.model.crosslaunch.parser.Writer;
+import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class BusinessLayer {
   private Node node;

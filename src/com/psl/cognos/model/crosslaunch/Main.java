@@ -25,8 +25,8 @@ import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
-import com.psl.cognos.model.crosslaunch.parser.CrossLaunchDefinitionWriter;
-import com.psl.cognos.model.crosslaunch.parser.TestWriter;
+import com.psl.cognos.model.crosslaunch.writer.CrossLaunchDefinitionWriter;
+import com.psl.cognos.model.crosslaunch.writer.TestWriter;
 
 public class Main {
 

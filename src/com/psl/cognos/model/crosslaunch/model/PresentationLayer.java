@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 import com.psl.cognos.model.crosslaunch.component.Cube;
 import com.psl.cognos.model.crosslaunch.component.Vendor;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
-import com.psl.cognos.model.crosslaunch.parser.Writer;
+import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class PresentationLayer {
   private boolean enabled = false;

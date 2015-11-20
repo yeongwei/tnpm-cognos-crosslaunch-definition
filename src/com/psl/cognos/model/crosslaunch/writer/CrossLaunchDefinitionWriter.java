@@ -1,4 +1,4 @@
-package com.psl.cognos.model.crosslaunch.parser;
+package com.psl.cognos.model.crosslaunch.writer;
 
 import java.util.ArrayList;
 
