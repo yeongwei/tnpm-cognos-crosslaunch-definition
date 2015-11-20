@@ -13,8 +13,8 @@ import org.w3c.dom.NodeList;
 
 import com.psl.cognos.model.crosslaunch.component.Cube;
 
-public class Parser {
-  private static Logger LOGGER = Logger.getLogger(Parser.class.getName());
+public class CognosModelParser {
+  private static Logger LOGGER = Logger.getLogger(CognosModelParser.class.getName());
 
   public static ArrayList<Cube> parseModel(Object node, String xPathStr)
       throws Exception {
