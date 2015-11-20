@@ -1,6 +1,11 @@
 package com.psl.cognos.model.crosslaunch.meta;
 
-public enum Property {
+/**
+ * Facilitate information on -D* JVM arguments
+ * @author laiyw
+ *
+ */
+public enum ConfigurationProperty {
   COGNOS_MODEL_FILE, ALARM_MODEL_FILE;
 
   public String getName() {

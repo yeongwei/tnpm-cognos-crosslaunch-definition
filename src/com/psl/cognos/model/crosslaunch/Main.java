@@ -20,7 +20,7 @@ import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.CrosslaunchDefinition;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeName;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
-import com.psl.cognos.model.crosslaunch.meta.Property;
+import com.psl.cognos.model.crosslaunch.meta.ConfigurationProperty;
 import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
@@ -40,7 +40,7 @@ public class Main {
     AlarmThreshold alarmThreshold = null;
 
     // PARSE COGNOS MODEL LAYERS
-    String modelFilePath = System.getProperty(Property.COGNOS_MODEL_FILE
+    String modelFilePath = System.getProperty(ConfigurationProperty.COGNOS_MODEL_FILE
         .getName());
     File modelFile = new File(modelFilePath);
 
@@ -79,7 +79,7 @@ public class Main {
 
     // PARSE ALARM THRESHOLD
     LOGGER.info("About to parse Alarm Threshold");
-    String alarmFilePath = System.getProperty(Property.ALARM_MODEL_FILE
+    String alarmFilePath = System.getProperty(ConfigurationProperty.ALARM_MODEL_FILE
         .getName());
     alarmThreshold = new AlarmThreshold(alarmFilePath);
     alarmThreshold.run();
