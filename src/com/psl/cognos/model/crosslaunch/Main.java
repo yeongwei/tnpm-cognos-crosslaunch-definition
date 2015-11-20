@@ -25,6 +25,7 @@ import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
+import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.CrossLaunchDefinitionWriter;
 import com.psl.cognos.model.crosslaunch.writer.TestWriter;
 
@@ -40,8 +41,8 @@ public class Main {
     AlarmThreshold alarmThreshold = null;
 
     // PARSE COGNOS MODEL LAYERS
-    String modelFilePath = System.getProperty(ConfigurationProperty.COGNOS_MODEL_FILE
-        .getName());
+    String modelFilePath = System
+        .getProperty(ConfigurationProperty.COGNOS_MODEL_FILE.getName());
     File modelFile = new File(modelFilePath);
 
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -49,27 +50,23 @@ public class Main {
     Document doc = dBuilder.parse(modelFile);
     doc.getDocumentElement().normalize();
 
+    // Start from NAMESPACE
     NodeList nameSpaceList = doc.getElementsByTagName(ModelNodeName.NAMESPACE
         .getName());
 
-    // LOGGER.info(Integer.toString(nameSpaceList.getLength()));
-
+    // For each NAMESPACE block look out for relevant name
     for (int pointer = 0; pointer < nameSpaceList.getLength(); pointer++) {
       Node node = nameSpaceList.item(pointer);
 
-      Element element = (Element) node;
-      NodeList nodeList = element
-          .getElementsByTagName(ModelNodeName.NAME.getName());
-      Node node0 = nodeList.item(0);
+      String namespaceName = CognosModelParser.getNodeName(node);
 
-      if (node0.getTextContent().equals(ModelNodeValue.BUSINESS_LAYER.getName())) {
+      if (namespaceName.equals(ModelNodeValue.BUSINESS_LAYER.getName())) {
         LOGGER.info("About to run Business Layer.");
         businessLayer = new BusinessLayer(node);
         businessLayer.run();
       }
 
-      if (node0.getTextContent()
-          .equals(ModelNodeValue.PRESENTATION_LAYER.getName())) {
+      if (namespaceName.equals(ModelNodeValue.PRESENTATION_LAYER.getName())) {
         LOGGER.info("About to run Presentation Layer.");
         presentationLayer = new PresentationLayer(node);
         presentationLayer.enable();
@@ -79,8 +76,8 @@ public class Main {
 
     // PARSE ALARM THRESHOLD
     LOGGER.info("About to parse Alarm Threshold");
-    String alarmFilePath = System.getProperty(ConfigurationProperty.ALARM_MODEL_FILE
-        .getName());
+    String alarmFilePath = System
+        .getProperty(ConfigurationProperty.ALARM_MODEL_FILE.getName());
     alarmThreshold = new AlarmThreshold(alarmFilePath);
     alarmThreshold.run();
 
