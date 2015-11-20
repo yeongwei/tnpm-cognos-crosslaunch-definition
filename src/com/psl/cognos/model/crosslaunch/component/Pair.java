@@ -1,10 +1,10 @@
 package com.psl.cognos.model.crosslaunch.component;
 
-public class Cube {
+public class Pair {
   public final String name;
   public final String value;
 
-  public Cube(String name, String value) {
+  public Pair(String name, String value) {
     this.name = name;
     this.value = value;
   }

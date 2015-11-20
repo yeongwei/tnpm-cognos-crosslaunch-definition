@@ -11,19 +11,19 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.psl.cognos.model.crosslaunch.component.Cube;
+import com.psl.cognos.model.crosslaunch.component.Pair;
 
 public class CognosModelParser {
   private static Logger LOGGER = Logger.getLogger(CognosModelParser.class.getName());
 
-  public static ArrayList<Cube> parseModel(Object node, String xPathStr)
+  public static ArrayList<Pair> parseModel(Object node, String xPathStr)
       throws Exception {
     return parseModel(node, xPathStr, false);
   }
 
-  public static ArrayList<Cube> parseModel(Object node, String xPathStr,
+  public static ArrayList<Pair> parseModel(Object node, String xPathStr,
       boolean print) throws Exception {
-    ArrayList<Cube> x = new ArrayList<Cube>();
+    ArrayList<Pair> x = new ArrayList<Pair>();
     // Using XPath to get XML chunks
     XPath xpath = XPathFactory.newInstance().newXPath();
     XPathExpression expr = xpath.compile(xPathStr);
@@ -36,7 +36,7 @@ public class CognosModelParser {
       if (print)
         LOGGER.info(String.format("%s: %s", node1.getNodeName(),
             node1.getNodeValue()));
-      x.add(new Cube(node1.getNodeName(), node1.getNodeValue()));
+      x.add(new Pair(node1.getNodeName(), node1.getNodeValue()));
     }
 
     return x;

@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import org.w3c.dom.Node;
 
-import com.psl.cognos.model.crosslaunch.component.Cube;
+import com.psl.cognos.model.crosslaunch.component.Pair;
 import com.psl.cognos.model.crosslaunch.meta.Vendor;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.Writer;
@@ -58,11 +58,11 @@ public class PresentationLayer {
       // FROM FOLDER
       String nameXpath = folderXpath + "shortcut/name/text()";
       LOGGER.finest(String.format("About to parse %s.", nameXpath));
-      ArrayList<Cube> names = CognosModelParser.parseModel(node, nameXpath);
+      ArrayList<Pair> names = CognosModelParser.parseModel(node, nameXpath);
 
       String refObjXpath = folderXpath + "shortcut/refobj/text()";
       LOGGER.finest(String.format("About to parse %s.", refObjXpath));
-      ArrayList<Cube> refObjs = CognosModelParser.parseModel(node, refObjXpath);
+      ArrayList<Pair> refObjs = CognosModelParser.parseModel(node, refObjXpath);
 
       int totalCount = (names.size() + refObjs.size()) / 2;
       for (int j = 0; j < totalCount; j++) {
@@ -75,10 +75,10 @@ public class PresentationLayer {
       // NOT FROM FOLDER
       String shortCutXpath = xpath + "shortcut/name/text()";
       LOGGER.finest(String.format("About to parse %s.", shortCutXpath));
-      ArrayList<Cube> shortCutNames = CognosModelParser.parseModel(node, shortCutXpath);
+      ArrayList<Pair> shortCutNames = CognosModelParser.parseModel(node, shortCutXpath);
 
       String shortCutRefObjXpath = xpath + "shortcut/refobj/text()";
-      ArrayList<Cube> shortCutRefObjs = CognosModelParser.parseModel(node,
+      ArrayList<Pair> shortCutRefObjs = CognosModelParser.parseModel(node,
           shortCutRefObjXpath);
 
       if (shortCutNames.size() != shortCutRefObjs.size()) {
