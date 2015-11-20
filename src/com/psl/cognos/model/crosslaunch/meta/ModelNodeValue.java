@@ -7,7 +7,7 @@ package com.psl.cognos.model.crosslaunch.meta;
  *
  */
 public enum ModelNodeValue {
-  BUSINESS_LAYER, PRESENTATION_LAYER;
+  BUSINESS_LAYER, PRESENTATION_LAYER, HOURLY_KPIS;
 
   public String getName() {
     switch (this) {
@@ -15,6 +15,8 @@ public enum ModelNodeValue {
       return "Business Layer";
     case PRESENTATION_LAYER:
       return "Presentation Layer";
+    case HOURLY_KPIS:
+      return "Hourly KPIs";
     default:
       return null;
     }
