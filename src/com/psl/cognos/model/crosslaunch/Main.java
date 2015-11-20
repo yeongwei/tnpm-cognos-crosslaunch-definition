@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -18,9 +17,9 @@ import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.CrosslaunchDefinition;
+import com.psl.cognos.model.crosslaunch.meta.ConfigurationProperty;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeName;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
-import com.psl.cognos.model.crosslaunch.meta.ConfigurationProperty;
 import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
@@ -34,7 +33,7 @@ public class Main {
   private static Logger LOGGER = Logger.getLogger(Main.class.getName());
 
   public static void main(String args[]) throws Exception {
-
+    
     // GLOBAL MEMBER
     BusinessLayer businessLayer = null;
     PresentationLayer presentationLayer = null;
@@ -153,10 +152,6 @@ public class Main {
       CROSSLAUNCH_DEFINITIONS.add(CROSSLAUNCH_DEFINITION);
     }
 
-    for (int d = 0; d < CROSSLAUNCH_DEFINITIONS.size(); d++) {
-      // LOGGER.finest(CROSSLAUNCH_DEFINITIONS.get(d).toString());
-    }
-
     LOGGER.info(String.format(
         "There are %d found and %d not found for Alarms.", numOfAlarmsFound,
         numOfAlarmsNotFound));
@@ -171,14 +166,14 @@ public class Main {
         .setMode(CrossLaunchDefinitionWriter.Mode.PRODUCTION);
     crossLaunchDefinitionWriter.setDelimiter("|");
     crossLaunchDefinitionWriter
-        .makeFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/CrossLaunchDefinition-");
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
     crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
     crossLaunchDefinitionWriter.write();
 
     LOGGER.info("About to write Test file.");
     TestWriter testWriter = new TestWriter();
     testWriter
-        .makeFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/Test-");
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\Test-");
     testWriter.process(CROSSLAUNCH_DEFINITIONS);
     testWriter.write();
   }

@@ -8,37 +8,29 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.psl.cognos.model.crosslaunch.component.Pair;
+import com.psl.cognos.model.crosslaunch.meta.ModelNodeName;
 
 public class CognosModelParser {
-  private static Logger LOGGER = Logger.getLogger(CognosModelParser.class.getName());
+  private static Logger LOGGER = Logger.getLogger(CognosModelParser.class
+      .getName());
 
-  public static ArrayList<Pair> parseModel(Object node, String xPathStr)
-      throws Exception {
-    return parseModel(node, xPathStr, false);
-  }
+  /**
+   * Get values of name tag within a node E.g. <node><name>getThis</name></node>
+   * 
+   * @param node
+   * @return
+   */
+  public static String getNodeName(Node node) {
+    Element element = (Element) node;
+    NodeList nodeList = element.getElementsByTagName(ModelNodeName.NAME
+        .getName());
+    Node node0 = nodeList.item(0);
 
-  public static ArrayList<Pair> parseModel(Object node, String xPathStr,
-      boolean print) throws Exception {
-    ArrayList<Pair> x = new ArrayList<Pair>();
-    // Using XPath to get XML chunks
-    XPath xpath = XPathFactory.newInstance().newXPath();
-    XPathExpression expr = xpath.compile(xPathStr);
-    // Object result = expr.evaluate(doc, XPathConstants.NODESET);
-    Object result = expr.evaluate(node, XPathConstants.NODESET);
-    NodeList nodes = (NodeList) result;
-
-    for (int i = 0; i < nodes.getLength(); i++) {
-      Node node1 = nodes.item(i);
-      if (print)
-        LOGGER.info(String.format("%s: %s", node1.getNodeName(),
-            node1.getNodeValue()));
-      x.add(new Pair(node1.getNodeName(), node1.getNodeValue()));
-    }
-
-    return x;
+    return node0.getTextContent();
   }
 }
