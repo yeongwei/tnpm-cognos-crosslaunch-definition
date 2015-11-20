@@ -25,6 +25,10 @@ public class ExcelParser {
     excelParser.run();
   }
 
+  public String getExcelFile() {
+    return this.excelFile;
+  }
+  
   public void run() throws Exception {
     XSSFSheet sheet = WORKBOOK.getSheetAt(1);
     XSSFRow row;

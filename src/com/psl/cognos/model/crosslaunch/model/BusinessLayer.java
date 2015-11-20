@@ -17,7 +17,7 @@ import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.DomainKnowledge;
 import com.psl.cognos.model.crosslaunch.component.DomainKnowledge.Technology;
-import com.psl.cognos.model.crosslaunch.parser.Parser;
+import com.psl.cognos.model.crosslaunch.parser.Writer;
 
 public class BusinessLayer {
   private Node node;
@@ -40,8 +40,7 @@ public class BusinessLayer {
      * , true);
      */
     ArrayList<String> _ROWS = new ArrayList<String>();
-    _ROWS.add("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
-
+    
     String businessKpiGroup = null;
     String businessFolderName = "Hourly KPIs"; // static
 
@@ -143,8 +142,10 @@ public class BusinessLayer {
       _ROWS.add(businessLayerRows.get(z).toString());
     }
 
-    Parser.writeToFile(
-        "D:/development/_assignment/CognosModel-CrossLaunch/output/"
-            + Parser.getFileName("BusinessLayerEnriched-"), _ROWS);
+    Writer writer = new Writer();
+    writer.setFileName("D:/development/_assignment/CognosModel-CrossLaunch/output/BusinessLayerEnriched-");
+    writer.setContent(_ROWS);
+    writer.setHeader("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
+    writer.write();
   }
 }

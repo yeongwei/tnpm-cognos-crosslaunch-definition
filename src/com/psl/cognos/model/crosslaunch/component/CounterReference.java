@@ -1,7 +1,5 @@
 package com.psl.cognos.model.crosslaunch.component;
 
-import com.psl.cognos.model.crosslaunch.parser.Parser;
-
 public class CounterReference {
   
   public final String fqnPath; // From business layer
@@ -10,7 +8,7 @@ public class CounterReference {
   public String presentationFqnPath;
   
   public CounterReference(String fqn) {
-    this(Parser.getFqnPath(fqn), Parser.getFqnName(fqn));
+    this(getFqnPath(fqn), getFqnName(fqn));
   }
   
   public CounterReference(String fqnPath, String fqnName) {
@@ -34,5 +32,24 @@ public class CounterReference {
     }
     s.append(this.fqnName);
     return s.toString();
+  }
+  
+  protected static String getFqnPath(String val) {
+    StringBuilder fqnPath = new StringBuilder();
+    String parts[] = val.split("\\.");
+    int limit = (parts.length - 1);
+    for (int i = 0; i < limit; i++) {
+      if (i == (limit - 1)) {
+        fqnPath.append(parts[i]);
+      } else {
+        fqnPath.append(parts[i]).append(".");
+      }
+    }
+    return fqnPath.toString();
+  }
+
+  protected static String getFqnName(String val) {
+    String parts[] = val.split("\\.");
+    return parts[parts.length - 1];
   }
 }

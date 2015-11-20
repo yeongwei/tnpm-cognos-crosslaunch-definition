@@ -54,6 +54,7 @@ public class AlarmStore {
   }
 
   public void dump() {
+    LOGGER.fine("About to perform store dump.");
     for (Object key : store.keySet()) {
       System.out.println(store.get(key).toString());
     }

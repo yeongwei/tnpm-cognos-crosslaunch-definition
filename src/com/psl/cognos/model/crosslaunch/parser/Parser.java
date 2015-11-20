@@ -1,12 +1,6 @@
 package com.psl.cognos.model.crosslaunch.parser;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.xml.xpath.XPath;
@@ -20,20 +14,7 @@ import org.w3c.dom.NodeList;
 import com.psl.cognos.model.crosslaunch.component.Cube;
 
 public class Parser {
-
   private static Logger LOGGER = Logger.getLogger(Parser.class.getName());
-
-  public static String getFileName(String prefix) {
-    String fileName = prefix;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
-    Date date = new Date();
-    fileName += dateFormat.format(date) + ".csv";
-    return fileName;
-  }
-
-  public static void parseAsFqn(ArrayList<String>... x) {
-    // do nothing
-  }
 
   public static ArrayList<Cube> parseModel(Object node, String xPathStr)
       throws Exception {
@@ -59,45 +40,5 @@ public class Parser {
     }
 
     return x;
-  }
-
-  public static void writeToFile(String fileName, ArrayList<String> content) {
-    File file = new File(fileName);
-    FileWriter fw;
-    BufferedWriter bw;
-    try {
-      file.createNewFile();
-      fw = new FileWriter(file.getAbsoluteFile());
-      bw = new BufferedWriter(fw);
-      for (int i = 0; i < content.size(); i++) {
-        bw.write(content.get(i) + "\n");
-      }
-      bw.close();
-      LOGGER.info(String.format("Finished writting into %d rows into %s.",
-          content.size(), fileName));
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  public static String getFqnPath(String val) {
-    StringBuilder fqnPath = new StringBuilder();
-    String parts[] = val.split("\\.");
-    int limit = (parts.length - 1);
-    for (int i = 0; i < limit; i++) {
-      if (i == (limit - 1)) {
-        fqnPath.append(parts[i]);
-      } else {
-        fqnPath.append(parts[i]).append(".");
-      }
-    }
-    return fqnPath.toString();
-  }
-
-  public static String getFqnName(String val) {
-    // LOGGER.info(val);
-    String parts[] = val.split("\\.");
-    // LOGGER.info(Integer.toString(parts.length));
-    return parts[parts.length - 1];
   }
 }
