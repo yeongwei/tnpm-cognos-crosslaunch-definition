@@ -1,5 +1,11 @@
 package com.psl.cognos.model.crosslaunch.meta;
 
+/**
+ * Facilitate Cognos Model Node Value
+ * Avoid re-typing
+ * @author laiyw
+ *
+ */
 public enum ModelValue {
   BUSINESS_LAYER, PRESENTATION_LAYER;
 

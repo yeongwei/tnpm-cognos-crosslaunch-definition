@@ -1,5 +1,11 @@
 package com.psl.cognos.model.crosslaunch.meta;
 
+/**
+ * Facilitates Cognos Model Node names
+ * Minimize re-typing
+ * @author laiyw
+ *
+ */
 public enum ModelNode {
   NAMESPACE, NAME;
 

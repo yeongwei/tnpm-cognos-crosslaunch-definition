@@ -1,5 +1,10 @@
 package com.psl.cognos.model.crosslaunch.meta;
 
+/**
+ * Facilitates Technology / Entity information that corresponds to Cognos Model
+ * @author laiyw
+ *
+ */
 public class DomainKnowledge {
   public enum Technology {
     TWO_G, THREE_G, FOUR_G;
@@ -16,7 +21,7 @@ public class DomainKnowledge {
       }
     }
 
-    // Entity Name aka CellID / EUTRANCELLID
+    // Entity Name aka Cell ID / EutranCell ID
     public String getEntityIdentifier() {
       switch (this) {
       case TWO_G:

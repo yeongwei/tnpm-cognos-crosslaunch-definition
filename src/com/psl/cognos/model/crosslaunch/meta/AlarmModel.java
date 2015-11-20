@@ -1,6 +1,10 @@
 package com.psl.cognos.model.crosslaunch.meta;
 
-
+/**
+ * Facilitate document information related to Alarm Threshold Excel
+ * @author laiyw
+ *
+ */
 public enum AlarmModel {
   HUAWEI_HOURLY_ALARM, HUAWEI_DASHBOARD_HOURLY_ALARM, ALU_HOURLY_ALARM, ALU_DASHBOARD_HOURLY_ALARM, ERICSSON_HOURLY_ALARM, ERICSSON_DASHBOARD_HOURLY_ALARM;
 
