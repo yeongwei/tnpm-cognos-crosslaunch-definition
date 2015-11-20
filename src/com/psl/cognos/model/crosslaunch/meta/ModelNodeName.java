@@ -6,7 +6,7 @@ package com.psl.cognos.model.crosslaunch.meta;
  * @author laiyw
  *
  */
-public enum ModelNode {
+public enum ModelNodeName {
   NAMESPACE, NAME;
 
   public String getName() {

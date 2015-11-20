@@ -18,8 +18,8 @@ import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.CrosslaunchDefinition;
-import com.psl.cognos.model.crosslaunch.meta.ModelNode;
-import com.psl.cognos.model.crosslaunch.meta.ModelValue;
+import com.psl.cognos.model.crosslaunch.meta.ModelNodeName;
+import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
 import com.psl.cognos.model.crosslaunch.meta.Property;
 import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
@@ -49,7 +49,7 @@ public class Main {
     Document doc = dBuilder.parse(modelFile);
     doc.getDocumentElement().normalize();
 
-    NodeList nameSpaceList = doc.getElementsByTagName(ModelNode.NAMESPACE
+    NodeList nameSpaceList = doc.getElementsByTagName(ModelNodeName.NAMESPACE
         .getName());
 
     // LOGGER.info(Integer.toString(nameSpaceList.getLength()));
@@ -59,17 +59,17 @@ public class Main {
 
       Element element = (Element) node;
       NodeList nodeList = element
-          .getElementsByTagName(ModelNode.NAME.getName());
+          .getElementsByTagName(ModelNodeName.NAME.getName());
       Node node0 = nodeList.item(0);
 
-      if (node0.getTextContent().equals(ModelValue.BUSINESS_LAYER.getName())) {
+      if (node0.getTextContent().equals(ModelNodeValue.BUSINESS_LAYER.getName())) {
         LOGGER.info("About to run Business Layer.");
         businessLayer = new BusinessLayer(node);
         businessLayer.run();
       }
 
       if (node0.getTextContent()
-          .equals(ModelValue.PRESENTATION_LAYER.getName())) {
+          .equals(ModelNodeValue.PRESENTATION_LAYER.getName())) {
         LOGGER.info("About to run Presentation Layer.");
         presentationLayer = new PresentationLayer(node);
         presentationLayer.enable();

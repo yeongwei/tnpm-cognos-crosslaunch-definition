@@ -6,7 +6,7 @@ package com.psl.cognos.model.crosslaunch.meta;
  * @author laiyw
  *
  */
-public enum ModelValue {
+public enum ModelNodeValue {
   BUSINESS_LAYER, PRESENTATION_LAYER;
 
   public String getName() {
