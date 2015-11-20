@@ -14,18 +14,6 @@ public class CrosslaunchDefinition {
   private String buFqnHourKey;
   private String prFqnPath;
   private String alarmName;
-
-  // public CrosslaunchDefinition(String bKpiName, String bFqnPath,
-  // CounterReferences bCounterReferences, String bFqnEntityIdentifier,
-  // String bFqnHourKey, String pFqnPath, String alarmName) {
-  // this.bKpiName = bKpiName;
-  // this.bFqnPath = bFqnPath;
-  // this.bCounterReferences = bCounterReferences;
-  // this.bFqnEntityIdentifier = bFqnEntityIdentifier;
-  // this.bFqnHourKey = bFqnHourKey;
-  // this.pFqnPath = pFqnPath;
-  // this.alarmName = alarmName;
-  // }
   
   @Override
   public String toString() {

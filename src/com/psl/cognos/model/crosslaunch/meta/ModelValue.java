@@ -1,4 +1,4 @@
-package com.psl.cognos.model.crosslaunch.component;
+package com.psl.cognos.model.crosslaunch.meta;
 
 public enum ModelValue {
   BUSINESS_LAYER, PRESENTATION_LAYER;

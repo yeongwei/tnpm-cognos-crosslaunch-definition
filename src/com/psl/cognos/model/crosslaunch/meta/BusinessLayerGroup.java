@@ -1,4 +1,4 @@
-package com.psl.cognos.model.crosslaunch.component;
+package com.psl.cognos.model.crosslaunch.meta;
 
 public enum BusinessLayerGroup {
   HUAWEI_KPIS, ERICSSON_KPIS, ALU_KPIS;

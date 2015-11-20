@@ -1,4 +1,5 @@
-package com.psl.cognos.model.crosslaunch.component;
+package com.psl.cognos.model.crosslaunch.meta;
+
 
 public enum AlarmModel {
   HUAWEI_HOURLY_ALARM, HUAWEI_DASHBOARD_HOURLY_ALARM, ALU_HOURLY_ALARM, ALU_DASHBOARD_HOURLY_ALARM, ERICSSON_HOURLY_ALARM, ERICSSON_DASHBOARD_HOURLY_ALARM;

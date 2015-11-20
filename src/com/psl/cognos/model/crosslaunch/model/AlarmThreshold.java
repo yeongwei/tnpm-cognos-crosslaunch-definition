@@ -5,8 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.psl.cognos.model.crosslaunch.component.AlarmKnowledge;
-import com.psl.cognos.model.crosslaunch.component.AlarmModel;
 import com.psl.cognos.model.crosslaunch.component.AlarmStore;
+import com.psl.cognos.model.crosslaunch.meta.AlarmModel;
 import com.psl.cognos.model.crosslaunch.parser.ExcelParser;
 
 public class AlarmThreshold extends ExcelParser {

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import org.w3c.dom.Node;
 
 import com.psl.cognos.model.crosslaunch.component.Cube;
-import com.psl.cognos.model.crosslaunch.component.Vendor;
+import com.psl.cognos.model.crosslaunch.meta.Vendor;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.Writer;
 

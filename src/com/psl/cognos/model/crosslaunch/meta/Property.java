@@ -1,4 +1,4 @@
-package com.psl.cognos.model.crosslaunch.component;
+package com.psl.cognos.model.crosslaunch.meta;
 
 public enum Property {
   COGNOS_MODEL_FILE, ALARM_MODEL_FILE;

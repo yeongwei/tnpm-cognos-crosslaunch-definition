@@ -12,11 +12,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.psl.cognos.model.crosslaunch.component.BusinessLayerGroup;
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
-import com.psl.cognos.model.crosslaunch.component.DomainKnowledge;
-import com.psl.cognos.model.crosslaunch.component.DomainKnowledge.Technology;
+import com.psl.cognos.model.crosslaunch.meta.BusinessLayerGroup;
+import com.psl.cognos.model.crosslaunch.meta.DomainKnowledge;
+import com.psl.cognos.model.crosslaunch.meta.DomainKnowledge.Technology;
 import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class BusinessLayer {
