@@ -34,7 +34,7 @@ public class Main {
   private static Logger LOGGER = Logger.getLogger(Main.class.getName());
 
   public static void main(String args[]) throws Exception {
-    
+
     // GLOBAL MEMBER
     BusinessLayer businessLayer = null;
     PresentationLayer presentationLayer = null;
@@ -114,13 +114,16 @@ public class Main {
         // LOGGER.finest(String.format("Skipping for KPI '%s'.",
         // BUSINESS_ROW.fqnName));
         String x[] = BUSINESS_ROW.uniqueKey.split("-");
-        StringBuffer s = new StringBuffer();
-        s.append(x[0]).append(",");
-        s.append(BUSINESS_ROW.fqnPath).append(",");
-        s.append(x[1]);
-        
-        ALARM_KPI_AUDIT.add(s.toString());
-        
+        if (!x[1].contains("_Denominator") && !x[1].contains("_Numerator")
+            && !x[1].contains("Den") && !x[1].contains("Num")) {
+          StringBuffer s = new StringBuffer();
+          s.append(x[0]).append(",");
+          s.append(BUSINESS_ROW.fqnPath).append(",");
+          s.append(x[1]);
+
+          ALARM_KPI_AUDIT.add(s.toString());
+        }
+
         numOfAlarmsNotFound += 1;
         continue;
       }
@@ -182,11 +185,12 @@ public class Main {
 
     LOGGER.info("About to Alarm KPI Audit file.");
     Writer writer = new Writer();
-    writer.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\AlarmKpiAudit-");
+    writer
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\AlarmKpiAudit-");
     writer.setContent(ALARM_KPI_AUDIT);
     writer.setHeader("Vendor,FqnPath,KpiName");
     writer.write();
-    
+
     LOGGER.info("About to write Test file.");
     TestWriter testWriter = new TestWriter();
     testWriter
