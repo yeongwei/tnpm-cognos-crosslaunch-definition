@@ -27,6 +27,7 @@ import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.CrossLaunchDefinitionWriter;
 import com.psl.cognos.model.crosslaunch.writer.TestWriter;
+import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class Main {
 
@@ -94,6 +95,7 @@ public class Main {
     int numOfAlarmsNotFound = 0;
     int numOfPrFqnFound = 0;
     int numOfPrFqnNotFound = 0;
+    ArrayList<String> ALARM_KPI_AUDIT = new ArrayList<String>();
 
     ArrayList<CrosslaunchDefinition> CROSSLAUNCH_DEFINITIONS = new ArrayList<CrosslaunchDefinition>();
 
@@ -111,6 +113,14 @@ public class Main {
       } else {
         // LOGGER.finest(String.format("Skipping for KPI '%s'.",
         // BUSINESS_ROW.fqnName));
+        String x[] = BUSINESS_ROW.uniqueKey.split("-");
+        StringBuffer s = new StringBuffer();
+        s.append(x[0]).append(",");
+        s.append(BUSINESS_ROW.fqnPath).append(",");
+        s.append(x[1]);
+        
+        ALARM_KPI_AUDIT.add(s.toString());
+        
         numOfAlarmsNotFound += 1;
         continue;
       }
@@ -170,6 +180,13 @@ public class Main {
     crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
     crossLaunchDefinitionWriter.write();
 
+    LOGGER.info("About to Alarm KPI Audit file.");
+    Writer writer = new Writer();
+    writer.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\AlarmKpiAudit-");
+    writer.setContent(ALARM_KPI_AUDIT);
+    writer.setHeader("Vendor,FqnPath,KpiName");
+    writer.write();
+    
     LOGGER.info("About to write Test file.");
     TestWriter testWriter = new TestWriter();
     testWriter
