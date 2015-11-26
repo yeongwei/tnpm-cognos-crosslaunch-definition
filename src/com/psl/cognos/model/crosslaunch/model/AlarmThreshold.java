@@ -1,5 +1,7 @@
 package com.psl.cognos.model.crosslaunch.model;
 
+import java.util.ArrayList;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -8,6 +10,7 @@ import com.psl.cognos.model.crosslaunch.component.AlarmKnowledge;
 import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.meta.AlarmModel;
 import com.psl.cognos.model.crosslaunch.parser.ExcelParser;
+import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class AlarmThreshold extends ExcelParser {
 
@@ -27,7 +30,8 @@ public class AlarmThreshold extends ExcelParser {
     int numberOfNilEntries = 0;
     alarmStore = new AlarmStore();
     AlarmModel ALARM_MODELS[] = AlarmModel.values();
-
+    ArrayList<String> ROWS = new ArrayList<String>();
+    
     for (int i = 0; i < ALARM_MODELS.length; i++) {
       AlarmModel AlARM_MODEL = ALARM_MODELS[i];
       XSSFSheet sheet = this.WORKBOOK.getSheetAt(AlARM_MODEL.getSheetIndex());
@@ -65,6 +69,15 @@ public class AlarmThreshold extends ExcelParser {
                 kpiNameInModelStr, alarmNameStr, uniqueKey);
             alarmStore.add(alarmKnowledge);
 
+            StringBuffer s = new StringBuffer();
+            s.append(AlARM_MODEL.getVendorName()).append(",");
+            s.append(kpiNameStr).append(",");
+            s.append(kpiNameInModelStr).append(",");
+            s.append(alarmNameStr).append(",");
+            s.append(uniqueKey);
+            
+            ROWS.add(s.toString());
+            
             numberOfEntries += 1;
           } else {
             numberOfNilEntries += 1;
@@ -77,6 +90,12 @@ public class AlarmThreshold extends ExcelParser {
       }
     }
 
+    Writer writer = new Writer();
+    writer.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\AlarmThreshold-");
+    writer.setContent(ROWS);
+    writer.setHeader("Vendor,KpiNameFromAlarmThreshold,KpiNameInModelFromAlarmThreshold,AlarmNameFromAlarmThreshold,UniqueKeyWithinObject");
+    writer.write();
+    
     LOGGER.info(String.format(
         "Processed %d Alarm Threshold entries and found %d NIL entires.",
         numberOfEntries, numberOfNilEntries));
