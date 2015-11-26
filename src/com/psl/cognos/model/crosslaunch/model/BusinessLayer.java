@@ -143,7 +143,7 @@ public class BusinessLayer {
     }
 
     Writer writer = new Writer();
-    writer.setFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\BusinessLayerEnriched-");
+    writer.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\BusinessLayerEnriched-");
     writer.setContent(_ROWS);
     writer.setHeader("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
     writer.write();

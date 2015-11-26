@@ -14,7 +14,6 @@ import org.w3c.dom.NodeList;
 import com.psl.cognos.model.crosslaunch.component.Pair;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
 import com.psl.cognos.model.crosslaunch.meta.Vendor;
-import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.Writer;
 
 public class PresentationLayer extends CognosModelLayer {
@@ -85,7 +84,7 @@ public class PresentationLayer extends CognosModelLayer {
     }
 
     Writer writer = new Writer();
-    writer.setFileName(this.fileName);
+    writer.makeFileName(this.fileName);
     writer.setContent(FILE);
     writer.setHeader(headerStr);
     writer.write();
