@@ -43,7 +43,7 @@ public class CrossLaunchDefinitionWriter extends Writer {
       // COUNTER REFERENCE
       ROW.append(makeCounterReferences(crosslaunchDefinition));
       
-      CONTENT.add(ROW.toString());
+      CONTENT.add(sanitize(ROW.toString()));
     }
     
     this.setContent(CONTENT);
@@ -101,6 +101,10 @@ public class CrossLaunchDefinitionWriter extends Writer {
 
     return s.toString();
 
+  }
+  
+  protected static String sanitize(String val) {
+    return val.replace("\"", "%22");
   }
 
   public enum Mode {
