@@ -15,7 +15,7 @@ public class Writer {
   private String ext = "csv";
   private ArrayList<String> content;
   private String delimiter = ",";
-  private final Logger LOGGER = Logger.getLogger(Writer.class.getName());
+  protected final Logger LOGGER = Logger.getLogger(Writer.class.getName());
 
   public void write() throws Exception {
     File file = new File(this.fileName);
@@ -77,5 +77,13 @@ public class Writer {
 
   public ArrayList<String> getContent() {
     return this.content;
+  }
+  
+  public void setExt(String ext) {
+    this.ext = ext;
+  }
+  
+  public String getExt() {
+    return this.ext;
   }
 }
