@@ -26,6 +26,7 @@ import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.CrossLaunchDefinitionWriter;
+import com.psl.cognos.model.crosslaunch.writer.ExcelWriter;
 import com.psl.cognos.model.crosslaunch.writer.TestWriter;
 import com.psl.cognos.model.crosslaunch.writer.Writer;
 
@@ -182,6 +183,13 @@ public class Main {
         .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
     crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
     crossLaunchDefinitionWriter.write();
+    
+    LOGGER.info("About to write Cross Launch Definition Excel file.");
+    ExcelWriter excelWriter = new ExcelWriter(1000, 10);
+    excelWriter.setExt("xlsx");
+    excelWriter.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
+    excelWriter.process(CROSSLAUNCH_DEFINITIONS);
+    excelWriter.write();
 
     LOGGER.info("About to Alarm KPI Audit file.");
     Writer writer = new Writer();
