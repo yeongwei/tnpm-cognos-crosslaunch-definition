@@ -112,15 +112,28 @@ public class Main {
         CROSSLAUNCH_DEFINITION.setAlarmName(alarmKnowledge.alarmName);
         numOfAlarmsFound += 1;
       } else {
-        // LOGGER.finest(String.format("Skipping for KPI '%s'.",
-        // BUSINESS_ROW.fqnName));
-        String x[] = BUSINESS_ROW.uniqueKey.split("-");
-        if (!x[1].contains("_Denominator") && !x[1].contains("_Numerator")
-            && !x[1].contains("Den") && !x[1].contains("Num")) {
+        // LOGGER.finest(String.format("Skipping for Unique Key '%s'.",
+        // BUSINESS_ROW.uniqueKey));
+        if (!BUSINESS_ROW.uniqueKey.contains("_Denominator")
+            && !BUSINESS_ROW.uniqueKey.contains("_Numerator")
+            && !BUSINESS_ROW.uniqueKey.contains("Den")
+            && !BUSINESS_ROW.uniqueKey.contains("Num")) {
+          String x[] = BUSINESS_ROW.uniqueKey.split("-");
+
           StringBuffer s = new StringBuffer();
           s.append(x[0]).append(",");
           s.append(BUSINESS_ROW.fqnPath).append(",");
-          s.append(x[1]);
+
+          // TODO: Should this be fixed ???
+          StringBuffer kpiName = new StringBuffer();
+          for (int v = 1; v < x.length; v++) {
+            if (v == x.length - 1) {
+              kpiName.append(x[v]);
+            } else {
+              kpiName.append(x[v]).append("-");
+            }
+          }
+          s.append(kpiName.toString());
 
           ALARM_KPI_AUDIT.add(s.toString());
         }
@@ -183,11 +196,12 @@ public class Main {
         .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
     crossLaunchDefinitionWriter.process(CROSSLAUNCH_DEFINITIONS);
     crossLaunchDefinitionWriter.write();
-    
+
     LOGGER.info("About to write Cross Launch Definition Excel file.");
     ExcelWriter excelWriter = new ExcelWriter(1000, 10);
     excelWriter.setExt("xlsx");
-    excelWriter.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
+    excelWriter
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\CrossLaunchDefinition-");
     excelWriter.process(CROSSLAUNCH_DEFINITIONS);
     excelWriter.write();
 
