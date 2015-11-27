@@ -28,7 +28,7 @@ public class ExcelParser {
   public String getExcelFile() {
     return this.excelFile;
   }
-  
+
   public void run() throws Exception {
     XSSFSheet sheet = WORKBOOK.getSheetAt(1);
     XSSFRow row;
@@ -42,7 +42,7 @@ public class ExcelParser {
       cell = row.getCell(3);
       LOGGER.info(cell.getStringCellValue());
     }
-    
-    //throw new RuntimeException("Needs implementaion.");
+
+    throw new RuntimeException("Needs implementaion.");
   }
 }
