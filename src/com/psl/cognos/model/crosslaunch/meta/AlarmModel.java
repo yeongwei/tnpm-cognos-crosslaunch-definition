@@ -2,11 +2,12 @@ package com.psl.cognos.model.crosslaunch.meta;
 
 /**
  * Facilitate document information related to Alarm Threshold Excel
+ * 
  * @author laiyw
- *
+ * 
  */
 public enum AlarmModel {
-  HUAWEI_HOURLY_ALARM, HUAWEI_DASHBOARD_HOURLY_ALARM, ALU_HOURLY_ALARM, ALU_DASHBOARD_HOURLY_ALARM, ERICSSON_HOURLY_ALARM, ERICSSON_DASHBOARD_HOURLY_ALARM;
+  HUAWEI_HOURLY_ALARM, HUAWEI_DASHBOARD_HOURLY_ALARM, ALU_HOURLY_ALARM, ALU_DASHBOARD_HOURLY_ALARM, ERICSSON_HOURLY_ALARM, ERICSSON_DASHBOARD_HOURLY_ALARM, DASHBOARD_AND_REPORTS;
 
   public int getSheetIndex() {
     switch (this) {
@@ -22,6 +23,8 @@ public enum AlarmModel {
       return 5;
     case ERICSSON_DASHBOARD_HOURLY_ALARM:
       return 6;
+    case DASHBOARD_AND_REPORTS:
+      return 1;
     default:
       return -1;
     }
@@ -36,6 +39,8 @@ public enum AlarmModel {
     case ERICSSON_HOURLY_ALARM:
     case ERICSSON_DASHBOARD_HOURLY_ALARM:
       return 2;
+    case DASHBOARD_AND_REPORTS:
+      return 0;
     default:
       return -1;
     }
@@ -50,6 +55,8 @@ public enum AlarmModel {
     case ERICSSON_HOURLY_ALARM:
     case ERICSSON_DASHBOARD_HOURLY_ALARM:
       return 3;
+    case DASHBOARD_AND_REPORTS:
+      return 1;
     default:
       return -1;
     }
@@ -65,6 +72,8 @@ public enum AlarmModel {
     case ALU_DASHBOARD_HOURLY_ALARM:
     case ERICSSON_DASHBOARD_HOURLY_ALARM:
       return 9;
+    case DASHBOARD_AND_REPORTS:
+      throw new RuntimeException("Needs concrete implementation.");
     default:
       return -1;
     }
@@ -81,6 +90,8 @@ public enum AlarmModel {
     case ERICSSON_HOURLY_ALARM:
     case ERICSSON_DASHBOARD_HOURLY_ALARM:
       return BusinessLayerGroup.ERICSSON_KPIS.getVendorName();
+    case DASHBOARD_AND_REPORTS:
+      throw new RuntimeException("Needs concrete implementation.");
     default:
       return null;
     }
