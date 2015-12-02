@@ -40,9 +40,6 @@ public class AlarmThreshold extends ExcelParser {
         .getSheetIndex());
 
     XSSFRow row;
-    XSSFCell kpiName;
-    XSSFCell kpiNameInModel;
-    XSSFCell alarmName;
     int totalRows = sheet.getPhysicalNumberOfRows();
 
     // Skip header
@@ -68,8 +65,9 @@ public class AlarmThreshold extends ExcelParser {
 
         numberOfEntries += 1;
       } else {
-        // LOGGER.finest(String.format("Skipping Alarm Threhsold for %s.",
-        // alarmThresholdRow.toString()));
+        if (true) 
+          LOGGER.finest(String.format("Skipping Alarm Threhsold for %s.",
+              alarmThresholdRow.toString()));
         numberOfNilEntries += 1;
       }
     }
@@ -111,59 +109,93 @@ class AlarmThresholdRow {
   private String alarmName;
 
   AlarmThresholdRow(XSSFRow ROW) {
-    this.kpiName = ROW.getCell(this.kpiNameIndex).getStringCellValue();
-    if (this.kpiName != null) {
-      this.kpiName = this.kpiName.trim();
+    XSSFCell CELL = null;
+
+    CELL = ROW.getCell(this.kpiNameIndex);
+    if (CELL != null) {
+      this.kpiName = CELL.getStringCellValue().trim();
     }
 
-    this.kpiNameInModel = ROW.getCell(this.kpiNameInModelIndex)
-        .getStringCellValue();
-    if (this.kpiNameInModel != null) {
-      this.kpiNameInModel = this.kpiNameInModel.trim();
+    CELL = ROW.getCell(this.kpiNameInModelIndex);
+    if (CELL != null) {
+      this.kpiNameInModel = CELL.getStringCellValue().trim();
     }
 
-    this.huaweiHourlyCellAlarmName = ROW.getCell(
-        this.huaweiHourlyCellAlarmNameIndex).getStringCellValue();
-    if (this.huaweiHourlyCellAlarmName != null) {
-      this.huaweiHourlyCellAlarmName = this.huaweiHourlyCellAlarmName.trim();
+    CELL = ROW.getCell(this.huaweiHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      this.huaweiHourlyCellAlarmName = CELL.getStringCellValue().trim();
     }
 
-    this.aluHourlyCellAlarmName = ROW.getCell(this.aluHourlyCellAlarmNameIndex)
-        .getStringCellValue();
-    if (this.aluHourlyCellAlarmName != null) {
-      this.aluHourlyCellAlarmName.trim();
+    CELL = ROW.getCell(this.aluHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      this.aluHourlyCellAlarmName = CELL.getStringCellValue().trim();
     }
 
-    this.ericssonHourlyCellAlarmName = ROW.getCell(
-        this.ericssonHourlyCellAlarmNameIndex).getStringCellValue();
-    if (this.ericssonHourlyCellAlarmName != null) {
-      this.ericssonHourlyCellAlarmName.trim();
+    CELL = ROW.getCell(this.ericssonHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      this.ericssonHourlyCellAlarmName = CELL.getStringCellValue().trim();
     }
 
     init();
   }
 
   private void init() {
-    if (!huaweiHourlyCellAlarmName.isEmpty()
-        && aluHourlyCellAlarmName.isEmpty()
-        && ericssonHourlyCellAlarmName.isEmpty()) {
+    if (isHuawei()) {
       this.vendorName = huaweiName;
       this.alarmName = huaweiHourlyCellAlarmName;
       this.status = true;
-    } else if (huaweiHourlyCellAlarmName.isEmpty()
-        && !aluHourlyCellAlarmName.isEmpty()
-        && ericssonHourlyCellAlarmName.isEmpty()) {
+    } else if (isAlu()) {
       this.vendorName = aluName;
       this.alarmName = aluHourlyCellAlarmName;
       this.status = true;
-    } else if (huaweiHourlyCellAlarmName.isEmpty()
-        && aluHourlyCellAlarmName.isEmpty()
-        && !ericssonHourlyCellAlarmName.isEmpty()) {
+    } else if (isEricsson()) {
       this.vendorName = ericssonName;
       this.alarmName = ericssonHourlyCellAlarmName;
       this.status = true;
     } else {
       this.status = false;
+    }
+  }
+
+  private boolean isHuawei() {
+    if (!isNil(this.huaweiHourlyCellAlarmName)
+        && isNil(this.aluHourlyCellAlarmName)
+        && isNil(this.ericssonHourlyCellAlarmName)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean isAlu() {
+    if (isNil(this.huaweiHourlyCellAlarmName)
+        && !isNil(this.aluHourlyCellAlarmName)
+        && isNil(this.ericssonHourlyCellAlarmName)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean isEricsson() {
+    if (isNil(this.huaweiHourlyCellAlarmName)
+        && isNil(this.aluHourlyCellAlarmName)
+        && !isNil(this.ericssonHourlyCellAlarmName)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private static boolean isNil(String val) {
+    if (val == null) {
+      return true;
+    } else {
+      if (val.isEmpty()) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
