@@ -47,25 +47,28 @@ public class AlarmThreshold extends ExcelParser {
       row = sheet.getRow(j);
       AlarmThresholdRow alarmThresholdRow = new AlarmThresholdRow(row);
 
-      if (alarmThresholdRow.getStatus()) {
-        AlarmKnowledge alarmKnowledge = new AlarmKnowledge(
-            alarmThresholdRow.getKpiName(),
-            alarmThresholdRow.getKpiNameInModel(),
-            alarmThresholdRow.getAlarmName(), alarmThresholdRow.getUniqueKey());
-        alarmStore.add(alarmKnowledge);
+      if (alarmThresholdRow.hasAlarmlets()) {
+        ArrayList<Alarmlet> x = alarmThresholdRow.getAlarmlets();
+        for (int k = 0; k < x.size(); k++) {
+          Alarmlet alarmlet = x.get(k);
+          AlarmKnowledge alarmKnowledge = new AlarmKnowledge(
+              alarmlet.getKpiName(), alarmlet.getKpiNameInModel(),
+              alarmlet.getAlarmName(), alarmlet.getUniqueKey());
+          alarmStore.add(alarmKnowledge);
 
-        StringBuffer s = new StringBuffer();
-        s.append(alarmThresholdRow.getVendorName()).append(",");
-        s.append(alarmThresholdRow.getKpiName()).append(",");
-        s.append(alarmThresholdRow.getKpiNameInModel()).append(",");
-        s.append(alarmThresholdRow.getAlarmName()).append(",");
-        s.append(alarmThresholdRow.getUniqueKey());
+          StringBuffer s = new StringBuffer();
+          s.append(alarmlet.getVendorName()).append(",");
+          s.append(alarmlet.getKpiName()).append(",");
+          s.append(alarmlet.getKpiNameInModel()).append(",");
+          s.append(alarmlet.getAlarmName()).append(",");
+          s.append(alarmlet.getUniqueKey());
 
-        ROWS.add(s.toString());
+          ROWS.add(s.toString());
 
-        numberOfEntries += 1;
+          numberOfEntries += 1;
+        }
       } else {
-        if (true) 
+        if (true)
           LOGGER.finest(String.format("Skipping Alarm Threhsold for %s.",
               alarmThresholdRow.toString()));
         numberOfNilEntries += 1;
@@ -86,121 +89,25 @@ public class AlarmThreshold extends ExcelParser {
   }
 }
 
-class AlarmThresholdRow {
+/*
+ * Represents each INDIVIDUAL SINGLE ALARM
+ */
+class Alarmlet {
+  private final String vendorName;
+  private final String kpiName;
+  private final String kpiNameInModel;
+  private final String alarmName;
 
-  private static final int kpiNameIndex = 0; // A
-  private static final int kpiNameInModelIndex = 1; // B
-  private static final int huaweiHourlyCellAlarmNameIndex = 66; // BO
-  private static final int aluHourlyCellAlarmNameIndex = 67; // BP
-  private static final int ericssonHourlyCellAlarmNameIndex = 68; // BQ
-
-  private static final String huaweiName = "Huawei";
-  private static final String aluName = "ALU";
-  private static final String ericssonName = "Ericsson";
-
-  private String kpiName;
-  private String kpiNameInModel;
-  private String huaweiHourlyCellAlarmName;
-  private String aluHourlyCellAlarmName;
-  private String ericssonHourlyCellAlarmName;
-
-  private boolean status;
-  private String vendorName;
-  private String alarmName;
-
-  AlarmThresholdRow(XSSFRow ROW) {
-    XSSFCell CELL = null;
-
-    CELL = ROW.getCell(this.kpiNameIndex);
-    if (CELL != null) {
-      this.kpiName = CELL.getStringCellValue().trim();
-    }
-
-    CELL = ROW.getCell(this.kpiNameInModelIndex);
-    if (CELL != null) {
-      this.kpiNameInModel = CELL.getStringCellValue().trim();
-    }
-
-    CELL = ROW.getCell(this.huaweiHourlyCellAlarmNameIndex);
-    if (CELL != null) {
-      this.huaweiHourlyCellAlarmName = CELL.getStringCellValue().trim();
-    }
-
-    CELL = ROW.getCell(this.aluHourlyCellAlarmNameIndex);
-    if (CELL != null) {
-      this.aluHourlyCellAlarmName = CELL.getStringCellValue().trim();
-    }
-
-    CELL = ROW.getCell(this.ericssonHourlyCellAlarmNameIndex);
-    if (CELL != null) {
-      this.ericssonHourlyCellAlarmName = CELL.getStringCellValue().trim();
-    }
-
-    init();
+  Alarmlet(String vendorName, String kpiName, String kpiNameInModel,
+      String alarmName) {
+    this.vendorName = vendorName;
+    this.kpiName = kpiName;
+    this.kpiNameInModel = kpiNameInModel;
+    this.alarmName = alarmName;
   }
 
-  private void init() {
-    if (isHuawei()) {
-      this.vendorName = huaweiName;
-      this.alarmName = huaweiHourlyCellAlarmName;
-      this.status = true;
-    } else if (isAlu()) {
-      this.vendorName = aluName;
-      this.alarmName = aluHourlyCellAlarmName;
-      this.status = true;
-    } else if (isEricsson()) {
-      this.vendorName = ericssonName;
-      this.alarmName = ericssonHourlyCellAlarmName;
-      this.status = true;
-    } else {
-      this.status = false;
-    }
-  }
-
-  private boolean isHuawei() {
-    if (!isNil(this.huaweiHourlyCellAlarmName)
-        && isNil(this.aluHourlyCellAlarmName)
-        && isNil(this.ericssonHourlyCellAlarmName)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  private boolean isAlu() {
-    if (isNil(this.huaweiHourlyCellAlarmName)
-        && !isNil(this.aluHourlyCellAlarmName)
-        && isNil(this.ericssonHourlyCellAlarmName)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  private boolean isEricsson() {
-    if (isNil(this.huaweiHourlyCellAlarmName)
-        && isNil(this.aluHourlyCellAlarmName)
-        && !isNil(this.ericssonHourlyCellAlarmName)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  private static boolean isNil(String val) {
-    if (val == null) {
-      return true;
-    } else {
-      if (val.isEmpty()) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  boolean getStatus() {
-    return this.status;
+  String getVendorName() {
+    return this.vendorName;
   }
 
   String getKpiName() {
@@ -216,20 +123,112 @@ class AlarmThresholdRow {
   }
 
   String getUniqueKey() {
-    return this.vendorName + "-" + this.kpiNameInModel;
+    StringBuffer s = new StringBuffer();
+    s.append(this.vendorName).append("-").append(this.kpiNameInModel);
+    return s.toString();
+  }
+}
+
+class AlarmThresholdRow {
+
+  private static final int kpiNameIndex = 0; // A
+  private static final int kpiNameInModelIndex = 1; // B
+  private static final int huaweiHourlyCellAlarmNameIndex = 66; // BO
+  private static final int aluHourlyCellAlarmNameIndex = 67; // BP
+  private static final int ericssonHourlyCellAlarmNameIndex = 68; // BQ
+
+  private static final String huaweiName = "Huawei";
+  private static final String aluName = "ALU";
+  private static final String ericssonName = "Ericsson";
+
+  private String kpiName;
+  private String kpiNameInModel;
+  private ArrayList<String> alarmNames = new ArrayList<String>();
+
+  private ArrayList<Alarmlet> alarmlets = new ArrayList<Alarmlet>();
+
+  AlarmThresholdRow(XSSFRow ROW) {
+    XSSFCell CELL = null;
+
+    CELL = ROW.getCell(this.kpiNameIndex);
+    if (CELL != null) {
+      this.kpiName = CELL.getStringCellValue().trim();
+    }
+
+    CELL = ROW.getCell(this.kpiNameInModelIndex);
+    if (CELL != null) {
+      this.kpiNameInModel = CELL.getStringCellValue().trim();
+    }
+
+    // huawei
+    CELL = ROW.getCell(this.huaweiHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      String alarmName = CELL.getStringCellValue().trim();
+      if (!alarmName.isEmpty()) {
+        alarmNames.add(alarmName);
+        Alarmlet x = new Alarmlet(huaweiName, this.kpiName,
+            this.kpiNameInModel, alarmName);
+        alarmlets.add(x);
+      }
+    }
+
+    // alu
+    CELL = ROW.getCell(this.aluHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      String alarmName = CELL.getStringCellValue().trim();
+      if (!alarmName.isEmpty()) {
+        alarmNames.add(alarmName);
+        Alarmlet x = new Alarmlet(aluName, this.kpiName, this.kpiNameInModel,
+            alarmName);
+        alarmlets.add(x);
+      }
+    }
+
+    // ericsson
+    CELL = ROW.getCell(this.ericssonHourlyCellAlarmNameIndex);
+    if (CELL != null) {
+      String alarmName = CELL.getStringCellValue().trim();
+      if (!alarmName.isEmpty()) {
+        alarmNames.add(alarmName);
+        Alarmlet x = new Alarmlet(ericssonName, this.kpiName,
+            this.kpiNameInModel, alarmName);
+        alarmlets.add(x);
+      }
+    }
   }
 
-  String getVendorName() {
-    return this.vendorName;
+  String getKpiName() {
+    return this.kpiName;
+  }
+
+  String getKpiNameInModel() {
+    return this.kpiNameInModel;
+  }
+
+  boolean hasAlarmlets() {
+    if (this.alarmlets.size() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  ArrayList<Alarmlet> getAlarmlets() {
+    return this.alarmlets;
   }
 
   @Override
   public String toString() {
     StringBuffer s = new StringBuffer();
-    s.append(this.vendorName).append("|_|");
     s.append(this.kpiName).append("|_|");
     s.append(this.kpiNameInModel).append("|_|");
-    s.append(this.alarmName).append("|_|");
+    for (int i = 0; i < this.alarmNames.size(); i++) {
+      if (i == this.alarmNames.size() - 1) {
+        s.append(this.alarmNames.get(i));
+      } else {
+        s.append(this.alarmNames.get(i)).append(",");
+      }
+    }
     return s.toString();
   }
 }
