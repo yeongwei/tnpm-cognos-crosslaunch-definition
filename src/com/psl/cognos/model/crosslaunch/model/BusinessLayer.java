@@ -61,7 +61,7 @@ public class BusinessLayer {
       NodeList nodes = (NodeList) result; // querySubject(s)
       for (int i = 0; i < nodes.getLength(); i++) {
         // Get Query subject name
-        expr = xpath.compile("name/text()");
+        expr = xpath.compile("name[@locale='en']/text()");
         result = expr.evaluate(nodes.item(i), XPathConstants.NODESET);
         NodeList nodeList1 = (NodeList) result;
         String businessQuerySubjectName = nodeList1.item(0).getNodeValue();
@@ -74,7 +74,7 @@ public class BusinessLayer {
         for (int j = 0; j < queryItemNodeList.getLength(); j++) {
           Node queryItemNode = queryItemNodeList.item(j);
 
-          expr = xpath.compile("name/text()");
+          expr = xpath.compile("name[@locale='en']/text()");
           result = expr.evaluate(queryItemNode, XPathConstants.NODESET);
           nodeList1 = (NodeList) result;
           String businessQueryItemName = nodeList1.item(0).getNodeValue();
