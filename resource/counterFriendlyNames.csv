@@ -1,2 +1,272 @@
-Column1,Column2
-[Huawei].[Huawei CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Numerator2],Mickey Mouse
+Counter Presentation Path,Proposed Alias Naming
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Denominator1],Call Setup Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Numerator1],Call Setup Success 
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Numerator2],Call Setup Success 
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Denominator2],Call Setup Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[SDCCH Drop Rate_Numerator],SDCCH Drop 
+[Huawei].[Huawei CS 2G CELL Hourly].[SDCCH Drop Rate_Denominator],SDCCH Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[TCH Blocking Rate (Congestion)_Numerator],TCH Blocking 
+[Huawei].[Huawei CS 2G CELL Hourly].[TCH Blocking Rate (Congestion)_Denominator],TCH Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[SDCCH Blocking Rate (Congestion)_Denominator],SDCCH Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[SDCCH Blocking Rate (Congestion)_Numerator],SDCCH Blocking 
+[Huawei].[Huawei CS 2G CELL Hourly].[Outgoing HO Success Rate_Numerator],Outgoing HO Success 
+[Huawei].[Huawei CS 2G CELL Hourly].[Outgoing HO Success Rate_Denominator],Outgoing HO Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[Incoming HO Success Rate_Denominator],Incoming HO Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[Incoming HO Success Rate_Numerator],Incoming HO Success 
+[Huawei].[Huawei CS 2G CELL Hourly].[TCH Availability_Numerator],
+[Huawei].[Huawei CS 2G CELL Hourly].[TCH Availability_Denominator],
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Drop Rate_Denominator],Call Attempt
+[Huawei].[Huawei CS 2G CELL Hourly].[Call Drop Rate_Numerator],Call Drop 
+[Huawei].[Huawei CS 2G CELL Hourly].[Handover Success Rate_Numerator],Handover Success 
+[Huawei].[Huawei CS 2G CELL Hourly].[Handover Success Rate_Denominator],Handover Attempt
+[Huawei].[Huawei PS 2G CELL Hourly].[PDCH Congestion Rate_Denominator],PDCH Attempt
+[Huawei].[Huawei PS 2G CELL Hourly].[PDCH Congestion Rate_Numerator],PDCH Congestion 
+[Huawei].[Huawei PS 2G CELL Hourly].[TBF Establishment Success Rate DL Num],
+[Huawei].[Huawei PS 2G CELL Hourly].[TBF Establishment Success Rate DL Den],
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[Cell Availability Den],
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[Cell Availability Num],
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RAB Success Rate],
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RRC Success Rate],
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RAB Success Rate_Denominator],CS RAB Attempt
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RAB Success Rate_Numerator],CS RAB Success 
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RRC Success Rate_Denominator],CS RRC Attempt
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[CS RRC Success Rate_Numerator],CS RRC Success 
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[RAB Congestion Rate CS_Denominator],RAB Attempt
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[RAB Congestion Rate CS_Numerator],RAB Congestion 
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[RRC Setup Success Rate_Denominator],RRC Setup Attempt
+[Huawei].[Huawei CS 3G CELL Availability and Usage Hourly].[RRC Setup Success Rate_Numerator],RRC Setup Success 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[CS Call Drop Rate_Numerator],CS Call Drop 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[CS Call Drop Rate_Denominator],CS Call Attempt
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Soft HO Success Rate_Numerator],Soft HO Success 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Soft HO Success Rate_Denominator],Soft HO Attempt
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Inter-RAT HO Success Rate_Denominator],Inter-RAT HO Attempt
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Inter-RAT HO Success Rate_Numerator],Inter-RAT HO Success 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[RRC Congestion Rate_Denominator],RRC Attempt
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[RRC Congestion Rate_Numerator],RRC Congestion 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Hard HO Incoming Success Rate_Denominator],Hard HO Incoming Attempt
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Hard HO Incoming Success Rate_Numerator],Hard HO Incoming Success 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Hard HO Outgoing Success Rate_Numerator],Hard HO Outgoing Success 
+[Huawei].[Huawei CS 3G CELL Retainability and Mobility Hourly].[Hard HO Outgoing Success Rate_Denominator],Hard HO Outgoing Attempt
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PS RRC Success Rate_Denominator],PS RRC Attempt
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PS RRC Success Rate_Numerator],PS RRC Success 
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PS RAB Success Rate_Denominator],PS RAB Attempt
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PS RAB Success Rate_Numerator],PS RAB Success 
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[Call Setup Success Rate PS R99_Denominator1],Call Setup Attempt
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[Call Setup Success Rate PS R99_Numerator2],Call Setup Success 
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[Call Setup Success Rate PS R99_Numerator1],Call Setup Success 
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[Call Setup Success Rate PS R99_Denominator2],Call Setup Attempt
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PSRAB Congestion Rate_Numerator],PSRAB Congestion 
+[Huawei].[Huawei PS 3G CELL Accessability and Usability Hourly].[PSRAB Congestion Rate_Denominator],PSRAB Attempt
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[HSDPA Drop Rate_Denominator],HSDPA Attempt
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[HSDPA Drop Rate_Numerator],HSDPA Drop 
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[HSUPA Drop Rate_Numerator],HSUPA Drop 
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[HSUPA Drop Rate_Denominator],HSUPA Attempt
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[Inter-RAT HO PS UTRAN Success Rate_Numerator],Inter-RAT HO PS UTRAN Success 
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[Inter-RAT HO PS UTRAN Success Rate_Denominator],Inter-RAT HO PS UTRAN Attempt
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[PS Call Drop Rate_Denominator],PS Call Attempt
+[Huawei].[Huawei PS 3G CELL Retainability Hourly].[PS Call Drop Rate_Numerator],PS Call Drop 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Availbility Num],
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Availability Den],
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[RRC Setup Success Rate_Denominator],RRC Setup Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[RRC Setup Success Rate_Numerator],RRC Setup Success 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[ERAB Setup Success Rate_Denominator],ERAB Setup Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[ERAB Setup Success Rate_Numerator],ERAB Setup Success 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[ERAB Drop Rate_Denominator],ERAB Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[ERAB Drop Rate_Numerator],ERAB Drop 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Mobility Success Rate_Denominator],Mobility Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Mobility Success Rate_Numerator],Mobility Success 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Outgoing HO Success Rate_Denominator],Outgoing HO Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Outgoing HO Success Rate_Numerator],Outgoing HO Success 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Incoming HO Success Rate_Numerator],Incoming HO Success 
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[Incoming HO Success Rate_Denominator],Incoming HO Attempt
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Denominator],CSSR (Call Setup Attempt)
+[Huawei].[Huawei PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Numerator],CSSR (Call Setup Success )
+[4G].[Huawei_PS_4G_EUTRANCELL_Hourly].[HUA_UDC1110116],
+[2G].[Ericsson_CS_2G_CELLACUS_Hourly].[ERI_UDC1120010],
+[2G].[Ericsson_CS_2G_CELLACUS_Hourly].[ERI_UDC1120015],
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[Call Setup Success Rate - 2G - Numerator1],Call Setup Success 
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[Call Setup Success Rate - 2G - Numerator2],Call Setup Success 
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[Call Setup Success Rate - 2G - Denominator1],Call Setup Attempt
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[Call Setup Success Rate - 2G - Denominator2],Call Setup Attempt
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[TCH Assignment Success Rate - Denominator],TCH Assignment Attempt
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[TCH Assignment Success Rate - Numerator],TCH Assignment Success 
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[RAACH Failure Rate - Denominator],RAACH Attempt
+[Ericsson].[Ericsson CS 2G CELLACUS Hourly].[RAACH Failure Rate - Numerator],RAACH Failure 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Outgoing HO Success Rate - Denominator],Outgoing HO Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Outgoing HO Success Rate - Numerator],Outgoing HO Success 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Incoming HO Success Rate - Numerator],Incoming HO Success 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Incoming HO Success Rate - Denominator],Incoming HO Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Call Drop Rate - Numerator],Call Drop 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Call Drop Rate - Denominator],Call Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Setup + HO Success Rate - Numerator],TCH Setup + HO Success 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Setup + HO Success Rate - Denominator],TCH Setup + HO Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (SS) - Numerator],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (SS) - Denominator],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (Qual) - Denominator],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (Qual) - Numerator],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (other) - Numerator1],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (other) - Numerator4],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (other) - Denominator1],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (other) - Numerator3],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[SD Drop (other) - Numerator2],
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Internal HO Success Rate - Numerator],Internal HO Success 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Internal HO Success Rate - Denominator],Internal HO Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[External HO Success Rate - Denominator],External HO Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[External HO Success Rate - Numerator],External HO Success 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Signal Strength - Numerator],TCH Drop - Signal Strength
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Signal Strength - Denominator],TCH Attempt - Signal Strength
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Quality - Numerator],TCH Drop - Quality
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Quality - Denominator],TCH Attempt - Quality
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Others - Numerator],TCH Drop -Others
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[TCH Drop Rate - Others - Denominator],TCH Attempt -Others
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Total SDCCH Drop Rate - Numerator2],Total SDCCH Drop 
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Total SDCCH Drop Rate - Denominator2],Total SDCCH Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Total SDCCH Drop Rate - Denominator1],Total SDCCH Attempt
+[Ericsson].[Ericsson CS 2G CELL RET Hourly].[Total SDCCH Drop Rate - Numerator1],Total SDCCH Drop 
+[Ericsson].[Ericsson PS 2G CELL Hourly].[GPRS Failure Rate - Numerator],GPRS Failure 
+[Ericsson].[Ericsson PS 2G CELL Hourly].[GPRS Failure Rate - Denominator],GPRS Attempt
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Blocking DL - Denominator],
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Blocking DL - Numerator],
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Blocking UL - Denominator],
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Blocking UL - Numerator],
+[Ericsson].[Ericsson PS 2G CELL Hourly].[PDCH Congestion Rate - Numerator1],PDCH Congestion 
+[Ericsson].[Ericsson PS 2G CELL Hourly].[PDCH Congestion Rate- Denominator1],PDCH Attempt
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Establishment Success Rate DL Num],
+[Ericsson].[Ericsson PS 2G CELL Hourly].[TBF Establishment Success Rate DL Den],
+[Ericsson].[Ericsson CS 3G CELL Hourly].[AMR Inter-RAT Prep Success Rate - Numerator],AMR Inter-RAT Prep Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[AMR Inter-RAT Prep Success Rate - Denominator],AMR Inter-RAT Prep Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[AMR Inter-RAT HO Success Rate - Denominator],AMR Inter-RAT HO Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[AMR Inter-RAT HO Success Rate - Numerator],AMR Inter-RAT HO Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Cell Availability Den],
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Cell Availability Num],
+[3G].[Ericsson_CS_3G_CELL_Hourly].[ERI_UDC1120075],
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS RRC Success Rate - Numerator],CS RRC Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS RRC Success Rate - Denominator],CS RRC Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS RAB Success Rate - Numerator],CS RAB Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS RAB Success Rate - Denominator],CS RAB Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS Call Drop Rate - Numerator],CS Call Drop 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[CS Call Drop Rate - Denominator],CS Call Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Drop Rate Speech - Denominator],
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Drop Rate Speech - Numerator],
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Inter-RAT HO Success Rate - Numerator],Inter-RAT HO Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Inter-RAT HO Success Rate - Denominator],Inter-RAT HO Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Inter-RAT Cell Change Success Rate - Denominator],Inter-RAT Cell Change Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Inter-RAT Cell Change Success Rate - Numerator],Inter-RAT Cell Change Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Soft HO Success Rate - Denominator],Soft HO Attempt
+[Ericsson].[Ericsson CS 3G CELL Hourly].[Soft HO Success Rate - Numerator],Soft HO Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[RRC Setup Success Rate - Numerator],RRC Setup Success 
+[Ericsson].[Ericsson CS 3G CELL Hourly].[RRC Setup Success Rate - Denominator],RRC Setup Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Numerator3],Call Setup Success 
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Numerator2],Call Setup Success 
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Denominator2],Call Setup Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Numerator1],Call Setup Success 
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Denominator1],Call Setup Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Call Setup Success Rate HS - Denominator3],Call Setup Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Drop Rate HS Data - Denominator],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Drop Rate HS Data - Numerator],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Inter-RAT HO PS UTRAN Success Rate Num],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[Inter-RAT HO PS UTRAN Success Rate Den],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Denominator3],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Numerator2],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Numerator3],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Numerator1],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Denominator2],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate - Denominator1],
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS RAB Success Rate - Numerator],PS RAB Success 
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS RAB Success Rate - Denominator],PS RAB Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS RRC Success Rate - Denominator],PS RRC Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS RRC Success Rate - Numerator],PS RRC Success 
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate R99 - Denominator],PS Call Attempt
+[Ericsson].[Ericsson PS 3G CELL Hourly].[PS Call Drop Rate R99 - Numerator],PS Call Drop 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Availability Num],
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Availability Den],
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[RRC Setup Success Rate - Numerator],RRC Setup Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[RRC Setup Success Rate - Denominator],RRC Setup Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Numerator3],ERAB Setup Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Numerator1],ERAB Setup Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Denominator2],ERAB Setup Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Numerator2],ERAB Setup Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Denominator1],ERAB Setup Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Setup Success Rate - Denominator3],ERAB Setup Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Drop Rate - Denominator],ERAB Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[ERAB Drop Rate - Numerator],ERAB Drop 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Minutes per Abnormal Release - Denominator],
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Minutes per Abnormal Release - Numerator],
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Session Setup Success Rate - Numerator],Session Setup Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Session Setup Success Rate - Denominator],Session Setup Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Preparation Success Rate - Numerator],HO Preparation Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Preparation Success Rate - Denominator],HO Preparation Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Execution Success Rate - Denominator],HO Execution Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Execution Success Rate - Numerator],HO Execution Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Success Rate - Denominator],HO Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[HO Success Rate - Numerator],HO Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Mobility Success Rate - Numerator1],Mobility Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Mobility Success Rate - Numerator2],Mobility Success 
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Mobility Success Rate - Denominator1],Mobility Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[Mobility Success Rate - Denominator2],Mobility Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[RRC Success Rate - Denominator],RRC Attempt
+[Ericsson].[Ericsson PS 4G EUTCELL Hourly].[RRC Success Rate - Numerator],RRC Success 
+[ALU].[ALU CS 2G CELL Hourly].[Call Drop Rate_Numerator],Call Drop 
+[ALU].[ALU CS 2G CELL Hourly].[Call Drop Rate_Denominator],Call Attempt
+[ALU].[ALU CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Numerator1],Call Setup Success 
+[ALU].[ALU CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Numerator2],Call Setup Success 
+[ALU].[ALU CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Denominator2],Call Setup Attempt
+[ALU].[ALU CS 2G CELL Hourly].[Call Setup Success Rate - 2G_Denominator1],Call Setup Attempt
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Numerator1],
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Numerator3],
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Numerator2],
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Denominator2],
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Denominator1],
+[ALU].[ALU CS 2G CELL Hourly].[Call Success Ratio_Denominator3],
+[ALU].[ALU CS 2G CELL Hourly].[Incoming HO Success Rate_Numerator],Incoming HO Success 
+[ALU].[ALU CS 2G CELL Hourly].[Incoming HO Success Rate_Denominator],Incoming HO Attempt
+[ALU].[ALU CS 2G CELL Hourly].[Outgoing HO Success Rate_Denominator],Outgoing HO Attempt
+[ALU].[ALU CS 2G CELL Hourly].[Outgoing HO Success Rate_Numerator],Outgoing HO Success 
+[ALU].[ALU CS 2G CELL Hourly].[TCH Availability_Denominator],
+[ALU].[ALU CS 2G CELL Hourly].[TCH Availability_Numerator],
+[ALU].[ALU CS 2G CELL Hourly].[TCH Blocking Rate (Congestion)_Numerator],TCH Blocking 
+[ALU].[ALU CS 2G CELL Hourly].[TCH Blocking Rate (Congestion)_Denominator],TCH Attempt
+[2G].[ALU_CS_2G_CELL_Hourly].[ALU_UDC1120120],
+[ALU].[ALU PS 2G CELL Hourly].[TBF Establishment Success Rate DL_Denominator],TBF Establishment Attempt
+[ALU].[ALU PS 2G CELL Hourly].[TBF Establishment Success Rate DL_Numerator],TBF Establishment Success 
+[ALU].[ALU PS 2G CELL Hourly].[PDCH Congestion Rate Num],
+[ALU].[ALU PS 2G CELL Hourly].[PDCH Congestion Rate Den],
+[ALU].[ALU CS 3G CELL Hourly].[Cell Availability_Numerator],
+[ALU].[ALU CS 3G CELL Hourly].[CS AMR Call Drop Rate_Denominator],CS AMR Call Attempt
+[ALU].[ALU CS 3G CELL Hourly].[CS AMR Call Drop Rate_Numerator],CS AMR Call Drop 
+[3G].[ALU_CS_3G_CELL_Hourly].[ALU_UDC1120037],
+[ALU].[ALU CS 3G CELL Hourly].[CS Call Drop Rate Den],
+[ALU].[ALU CS 3G CELL Hourly].[CS Call Drop Rate Num],
+[ALU].[ALU CS 3G CELL Hourly].[CS RAB Success Rate_Denominator],CS RAB Attempt
+[ALU].[ALU CS 3G CELL Hourly].[CS RAB Success Rate_Numerator],CS RAB Success 
+[ALU].[ALU CS 3G CELL Hourly].[CS RRC Success Rate_Numerator],CS RRC Success 
+[ALU].[ALU CS 3G CELL Hourly].[CS RRC Success Rate_Denominator],CS RRC Attempt
+[ALU].[ALU CS 3G CELL Hourly].[Inter-RAT HO Success Rate_Denominator],Inter-RAT HO Attempt
+[ALU].[ALU CS 3G CELL Hourly].[Inter-RAT HO Success Rate_Numerator],Inter-RAT HO Success 
+[ALU].[ALU CS 3G CELL Hourly].[Soft HO Success Rate_Numerator],Soft HO Success 
+[ALU].[ALU CS 3G CELL Hourly].[Soft HO Success Rate_Denominator],Soft HO Attempt
+[ALU].[ALU PS 3G CELL Hourly].[Drop Rate HS Data Num],
+[ALU].[ALU PS 3G CELL Hourly].[Drop Rate HS Data Den],
+[ALU].[ALU PS 3G CELL Hourly].[PS Call Drop Rate_Denominator],PS Call Attempt
+[ALU].[ALU PS 3G CELL Hourly].[PS Call Drop Rate_Numerator],PS Call Drop 
+[ALU].[ALU PS 3G CELL Hourly].[PS RAB Success Rate_Denominator],PS RAB Attempt
+[ALU].[ALU PS 3G CELL Hourly].[PS RAB Success Rate_Numerator],PS RAB Success 
+[ALU].[ALU PS 3G CELL Hourly].[PS RRC Success Rate_Numerator],PS RRC Success 
+[ALU].[ALU PS 3G CELL Hourly].[PS RRC Success Rate_Denominator],PS RRC Attempt
+[ALU].[ALU PS 3G CELL Hourly].[Inter-RAT HO PS UTRAN Success Rate Num],
+[ALU].[ALU PS 3G CELL Hourly].[Inter-RAT HO PS UTRAN Success Rate Den],
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Numerator2],CSSR (Call Setup Success 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Denominator1],CSSR (Call Setup Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Numerator1],CSSR (Call Setup Success 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[CSSR (Call Setup Success Rate)_Denominator2],CSSR (Call Setup Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[ERAB Drop Rate_Numerator],ERAB Drop 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[ERAB Drop Rate_Denominator],ERAB Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[ERAB Setup Success Rate_Numerator],ERAB Setup Success 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[ERAB Setup Success Rate_Denominator],ERAB Setup Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[Mobility Success Rate_Numerator],Mobility Success 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[Mobility Success Rate_Denominator],Mobility Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[RRC Setup Success Rate_Numerator],RRC Setup Success 
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[RRC Setup Success Rate_Denominator],RRC Setup Attempt
+[4G].[ALU_PS_4G_EUTCELL_Hourly].[ALU_UDC1110115],
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[X2&S1 Incoming HO Failures Rate (Prep&Exec)_Denominator],X2&S1 Incoming HO Attempt
+[ALU].[ALU PS 4G EUTRANCELL Hourly].[X2&S1 Incoming HO Failures Rate (Prep&Exec)_Numerator],X2&S1 Incoming HO Failures 
