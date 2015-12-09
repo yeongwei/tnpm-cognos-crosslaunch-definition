@@ -1,11 +1,15 @@
 package com.psl.cognos.model.crosslaunch.component;
 
+import com.psl.cognos.model.crosslaunch.model.CounterFriendlyName;
+
 public class CounterReference {
   
   public final String fqnPath; // From business layer
   public final String fqnName; // From business layer
   
   public String presentationFqnPath;
+  
+  private String friendlyName;
   
   public CounterReference(String fqn) {
     this(getFqnPath(fqn), getFqnName(fqn));
@@ -19,6 +23,14 @@ public class CounterReference {
   public boolean setPresentationFqnPath(String presentationFqnPath) {
     this.presentationFqnPath = presentationFqnPath;
     return true;
+  }
+  
+  public void inferFriendlyName(CounterFriendlyName counterFriendlyName) {
+    this.friendlyName = counterFriendlyName.getFriendlyName(this);
+  }
+  
+  public String getFriendlyName() {
+    return this.friendlyName;
   }
   
   @Override
