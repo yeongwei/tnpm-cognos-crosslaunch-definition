@@ -31,8 +31,6 @@ public class Alarmlet {
   }
 
   public String getUniqueKey() {
-    StringBuffer s = new StringBuffer();
-    s.append(this.vendorName).append("-").append(this.kpiNameInModel);
-    return s.toString();
+    return AlarmModel.makeUniqueKey(this);
   }
 }

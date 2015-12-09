@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
+import com.psl.cognos.model.crosslaunch.meta.AlarmModel;
 import com.psl.cognos.model.crosslaunch.meta.BusinessLayerGroup;
 import com.psl.cognos.model.crosslaunch.meta.DomainKnowledge;
 import com.psl.cognos.model.crosslaunch.meta.DomainKnowledge.Technology;
@@ -40,7 +41,7 @@ public class BusinessLayer {
      * , true);
      */
     ArrayList<String> _ROWS = new ArrayList<String>();
-    
+
     String businessKpiGroup = null;
     String businessFolderName = "Hourly KPIs"; // static
 
@@ -118,14 +119,12 @@ public class BusinessLayer {
           fqnHourKey.append("[Hour key Start]");
 
           // Unique Key = Vendor + kpiName
-          StringBuffer uniqueKey = new StringBuffer();
-          uniqueKey.append(BUSINESS_GROUP.getVendorName());
-          uniqueKey.append("-");
-          uniqueKey.append(businessQueryItemName);
+          String uniqueKey = AlarmModel.makeUniqueKey(
+              BUSINESS_GROUP.getVendorName(), businessQueryItemName);
 
           BusinessLayerRow ROW = new BusinessLayerRow(businessQueryItemName,
               fqnPath, counterReferences, fqnEntityIdentifier.toString(),
-              fqnHourKey.toString(), uniqueKey.toString());
+              fqnHourKey.toString(), uniqueKey);
           businessLayerRows.add(ROW);
         }
 
@@ -143,9 +142,11 @@ public class BusinessLayer {
     }
 
     Writer writer = new Writer();
-    writer.makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\BusinessLayerEnriched-");
+    writer
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\BusinessLayerEnriched-");
     writer.setContent(_ROWS);
-    writer.setHeader("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
+    writer
+        .setHeader("FQN NAME,FQN PATH,COUNTER REFERENCE,ENTITY NAME,HOUR KEY");
     writer.write();
   }
 }

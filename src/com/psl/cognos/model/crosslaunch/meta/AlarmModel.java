@@ -96,4 +96,19 @@ public enum AlarmModel {
       return null;
     }
   }
+
+  public final static String UNIQUE_KEY_DELIM = "#";
+
+  public static String makeUniqueKey(String vendorName, String kpiNameInModel) {
+    StringBuffer s = new StringBuffer();
+    s.append(vendorName).append(UNIQUE_KEY_DELIM).append(kpiNameInModel);
+    return s.toString();
+  }
+
+  public static String makeUniqueKey(Alarmlet alarmlet) {
+    StringBuffer s = new StringBuffer();
+    s.append(alarmlet.getVendorName()).append(UNIQUE_KEY_DELIM)
+        .append(alarmlet.getKpiNameInModel());
+    return s.toString();
+  }
 }
