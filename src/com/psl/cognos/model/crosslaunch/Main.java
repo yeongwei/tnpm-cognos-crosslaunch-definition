@@ -17,6 +17,7 @@ import com.psl.cognos.model.crosslaunch.component.AlarmStore;
 import com.psl.cognos.model.crosslaunch.component.CounterReference;
 import com.psl.cognos.model.crosslaunch.component.CounterReferences;
 import com.psl.cognos.model.crosslaunch.component.CrosslaunchDefinition;
+import com.psl.cognos.model.crosslaunch.meta.AlarmModel;
 import com.psl.cognos.model.crosslaunch.meta.ConfigurationProperty;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeName;
 import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
@@ -96,7 +97,9 @@ public class Main {
     int numOfAlarmsNotFound = 0;
     int numOfPrFqnFound = 0;
     int numOfPrFqnNotFound = 0;
+    int numOfCounters = 0;
     ArrayList<String> ALARM_KPI_AUDIT = new ArrayList<String>();
+    ArrayList<String> COUNTERS = new ArrayList<String>();
 
     ArrayList<CrosslaunchDefinition> CROSSLAUNCH_DEFINITIONS = new ArrayList<CrosslaunchDefinition>();
 
@@ -118,22 +121,13 @@ public class Main {
             && !BUSINESS_ROW.uniqueKey.contains("_Numerator")
             && !BUSINESS_ROW.uniqueKey.contains("Den")
             && !BUSINESS_ROW.uniqueKey.contains("Num")) {
-          String x[] = BUSINESS_ROW.uniqueKey.split("-");
+          String x[] = BUSINESS_ROW.uniqueKey
+              .split(AlarmModel.UNIQUE_KEY_DELIM);
 
           StringBuffer s = new StringBuffer();
           s.append(x[0]).append(",");
           s.append(BUSINESS_ROW.fqnPath).append(",");
-
-          // TODO: Should this be fixed ???
-          StringBuffer kpiName = new StringBuffer();
-          for (int v = 1; v < x.length; v++) {
-            if (v == x.length - 1) {
-              kpiName.append(x[v]);
-            } else {
-              kpiName.append(x[v]).append("-");
-            }
-          }
-          s.append(kpiName.toString());
+          s.append(x[1]);
 
           ALARM_KPI_AUDIT.add(s.toString());
         }
@@ -166,6 +160,8 @@ public class Main {
               .get(counterReference.fqnPath));
         }
         counterReferenceStoreNew.add(counterReference);
+        COUNTERS.add(counterReference.toString());
+        numOfCounters += 1;
       }
       CROSSLAUNCH_DEFINITION.setBuCounterReferences(counterReferences);
 
@@ -180,8 +176,8 @@ public class Main {
     }
 
     LOGGER.info(String.format(
-        "There are %d found and %d not found for Alarms.", numOfAlarmsFound,
-        numOfAlarmsNotFound));
+        "There are %d found and %d not found for Alarms and %d Counters.",
+        numOfAlarmsFound, numOfAlarmsNotFound, numOfCounters));
 
     LOGGER.info(String.format(
         "There are %d found and %d not found for Presentation FQN Path.",
@@ -219,5 +215,14 @@ public class Main {
         .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\Test-");
     testWriter.process(CROSSLAUNCH_DEFINITIONS);
     testWriter.write();
+
+    LOGGER.info("About to write Counters file.");
+    Writer counterWriter = new Writer();
+    counterWriter
+        .makeFileName("D:\\development\\_assignment\\TNPM-Cognos-CrossLaunch-Definition\\output\\Counters-");
+    counterWriter.setContent(COUNTERS);
+    counterWriter.setHeader("Counter Presentation Path,Counter Friendly Name");
+    counterWriter.write();
+
   }
 }
