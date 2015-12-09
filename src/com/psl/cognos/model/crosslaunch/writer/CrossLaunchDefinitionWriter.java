@@ -32,33 +32,39 @@ public class CrossLaunchDefinitionWriter extends Writer {
        */
 
       // ALARM NAME
-      ROW.append(crosslaunchDefinition.getAlarmName()).append(this.getDelimiter());
+      ROW.append(crosslaunchDefinition.getAlarmName()).append(
+          this.getDelimiter());
       // KPI REFERENCE - member([Ericsson].[Ericsson CS 2G CELLACUS Hourly].[TCH
       // Availability],'','TCH Availability')
-      ROW.append(makeKpiReference(crosslaunchDefinition)).append(this.getDelimiter());
+      ROW.append(makeKpiReference(crosslaunchDefinition)).append(
+          this.getDelimiter());
       // ENTITY REFERENCE
-      ROW.append(crosslaunchDefinition.getBuFqnEntityIdentifier()).append(this.getDelimiter());
+      ROW.append(crosslaunchDefinition.getBuFqnEntityIdentifier()).append(
+          this.getDelimiter());
       // HOUR KEY
-      ROW.append(crosslaunchDefinition.getBuFqnHourKey()).append(this.getDelimiter());
+      ROW.append(crosslaunchDefinition.getBuFqnHourKey()).append(
+          this.getDelimiter());
       // COUNTER REFERENCE
       ROW.append(makeCounterReferences(crosslaunchDefinition));
-      
+
       CONTENT.add(sanitize(ROW.toString()));
     }
-    
+
     this.setContent(CONTENT);
     this.setHeader("ALARM NAME|KPI REFERENCE|ENTITY REFERENCE|HOUR KEY|COUNTER REFERENCE");
   }
 
   protected String makeKpiReference(CrosslaunchDefinition crosslaunchDefinition) {
     return makeMember(crosslaunchDefinition.getBuPrFqnPath(),
+        crosslaunchDefinition.getBuKpiName(),
         crosslaunchDefinition.getBuKpiName());
   }
-  
-  protected String makeCounterReferences(CrosslaunchDefinition crosslaunchDefinition) {
+
+  protected String makeCounterReferences(
+      CrosslaunchDefinition crosslaunchDefinition) {
     StringBuffer s = new StringBuffer();
     s.append("<selectChoices>");
-    
+
     CounterReferences counterReferences = crosslaunchDefinition
         .getBuCounterReferences();
     ArrayList<CounterReference> counterStore = counterReferences.getStore();
@@ -66,21 +72,22 @@ public class CrossLaunchDefinitionWriter extends Writer {
       CounterReference counterReference = counterStore.get(j);
       if (counterReference.presentationFqnPath == null) {
         s.append(makeSelectOption(counterReference.fqnPath,
-            counterReference.fqnName));
+            counterReference.fqnName, counterReference.getFriendlyName()));
       } else {
         s.append(makeSelectOption(counterReference.presentationFqnPath,
-            counterReference.fqnName));
+            counterReference.fqnName, counterReference.getFriendlyName()));
       }
     }
-    
+
     s.append("</selectChoices>");
     return s.toString();
   }
-  
-  protected String makeMember(String fqnPath, String name) {
+
+  protected String makeMember(String fqnPath, String name, String friendlyName) {
     StringBuffer s = new StringBuffer();
     s.append("member(").append(fqnPath).append(".[").append(name).append("]")
-        .append(",'',").append("'").append(name).append("'").append(")");
+        .append(",'',").append("'").append(friendlyName).append("'")
+        .append(")");
 
     return s.toString();
   }
@@ -90,19 +97,20 @@ public class CrossLaunchDefinitionWriter extends Writer {
    * "member([Ericsson].[Ericsson CS 2G CELLACUS Hourly].[TCH Attempts],'','TCH Attempts')"
    * />
    */
-  protected String makeSelectOption(String fqnPath, String name) {
+  protected String makeSelectOption(String fqnPath, String name,
+      String friendlyName) {
     name = name.replace("[", "");
     name = name.replace("]", "");
-    
+
     StringBuffer s = new StringBuffer();
     s.append("<selectOption useValue=\"");
-    s.append(makeMember(fqnPath, name));
+    s.append(makeMember(fqnPath, name, friendlyName));
     s.append("\"/>");
 
     return s.toString();
 
   }
-  
+
   protected static String sanitize(String val) {
     return val.replace("\"", "%22");
   }
