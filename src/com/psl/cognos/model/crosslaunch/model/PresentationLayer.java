@@ -52,7 +52,7 @@ public class PresentationLayer extends CognosModelLayer {
           ModelNodeValue.HOURLY_KPIS.getName());
 
       // FROM FOLDER
-      String nameXpath = folderXpath + "shortcut/name/text()";
+      String nameXpath = folderXpath + "shortcut/name[@locale='en']/text()";
       LOGGER.finest(String.format("About to parse %s.", nameXpath));
       ArrayList<Pair> names = asPairs(node, nameXpath);
 
@@ -64,7 +64,7 @@ public class PresentationLayer extends CognosModelLayer {
           vendors[i].getName(), names, refObjs));
 
       // FROM NOT FOLDER
-      String shortCutXpath = xpath + "shortcut/name/text()";
+      String shortCutXpath = xpath + "shortcut/name[@locale='en']/text()";
       LOGGER.finest(String.format("About to parse %s.", shortCutXpath));
       ArrayList<Pair> shortCutNames = asPairs(node, shortCutXpath);
 
@@ -100,6 +100,7 @@ public class PresentationLayer extends CognosModelLayer {
    */
   private static ArrayList<PresentationLayerRow> makePresentationLayerRows(
       String vendor, ArrayList<Pair> x, ArrayList<Pair> y) throws Exception {
+    LOGGER.finest(String.format("Found %d x and %d y.", x.size(), y.size()));
     if (x.size() != y.size()) {
       throw new RuntimeException(
           "The number of node name and refobjs mustbe the same.");
