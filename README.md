@@ -43,6 +43,9 @@ Mapping Business Layer and Presentation Layer with Alarm Information.
 2. -DalarmModelFile
    - Excel file that consist of Alarm information that maps each KPI to respective Alarm Names by Vendor.
 
+3. -DcounterFriendlyNameFile
+   - CSV file that consist of Counter FQN to friendly name.
+
 ## Optional Argument
 1. -Djava.util.logging.config
    - `logging.properties` file usually for debugging purpose.
@@ -54,6 +57,7 @@ Mapping Business Layer and Presentation Layer with Alarm Information.
 ```java
 -DcognosModelFile=D:\development\_assignment\TNPM-Cognos-CrossLaunch-Definition\resource\model.xml
 -DalarmModelFile=D:\development\_assignment\TNPM-Cognos-CrossLaunch-Definition\resource\alarm_threshold.xlsx
+-DcounterFriendlyNameFile=D:\development\_assignment\TNPM-Cognos-CrossLaunch-Definition\resource\counterFriendlyNames.csv
 -DoutputFolder=D:\development\_assignment\TNPM-Cognos-CrossLaunch-Definition\output\
 -Djava.util.logging.config.file=D:\development\_assignment\TNPM-Cognos-CrossLaunch-Definition\resource\logging.properties
 ```
