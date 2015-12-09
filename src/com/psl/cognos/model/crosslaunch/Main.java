@@ -24,6 +24,7 @@ import com.psl.cognos.model.crosslaunch.meta.ModelNodeValue;
 import com.psl.cognos.model.crosslaunch.model.AlarmThreshold;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayer;
 import com.psl.cognos.model.crosslaunch.model.BusinessLayerRow;
+import com.psl.cognos.model.crosslaunch.model.CounterFriendlyName;
 import com.psl.cognos.model.crosslaunch.model.PresentationLayer;
 import com.psl.cognos.model.crosslaunch.parser.CognosModelParser;
 import com.psl.cognos.model.crosslaunch.writer.CrossLaunchDefinitionWriter;
@@ -92,6 +93,13 @@ public class Main {
     // System.out.println(key);
     // }
 
+    // PARSE COUTNER FRIENDLY NAME
+    LOGGER.info("About to parse Counter Friendly Names");
+    String counterFriendlyNameFile = System
+        .getProperty(ConfigurationProperty.COUNTER_FRIENDLY_NAME_FILE.getName());
+    CounterFriendlyName counterFriendlyName = new CounterFriendlyName(
+        counterFriendlyNameFile);
+
     // STATS
     int numOfAlarmsFound = 0;
     int numOfAlarmsNotFound = 0;
@@ -159,6 +167,7 @@ public class Main {
           counterReference.setPresentationFqnPath(presentationStore
               .get(counterReference.fqnPath));
         }
+        counterReference.inferFriendlyName(counterFriendlyName);
         counterReferenceStoreNew.add(counterReference);
         COUNTERS.add(counterReference.toString());
         numOfCounters += 1;
