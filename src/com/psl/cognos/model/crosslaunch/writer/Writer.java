@@ -46,15 +46,15 @@ public class Writer {
   public String getFileName() {
     return this.fileName;
   }
-  
+
   public void setDelimiter(String delimiter) {
     this.delimiter = delimiter;
   }
-  
+
   public String getDelimiter() {
     return this.delimiter;
-  } 
-  
+  }
+
   public void makeFileName(String prefix) {
     String fileName = prefix;
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
@@ -78,11 +78,11 @@ public class Writer {
   public ArrayList<String> getContent() {
     return this.content;
   }
-  
+
   public void setExt(String ext) {
     this.ext = ext;
   }
-  
+
   public String getExt() {
     return this.ext;
   }
