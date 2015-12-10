@@ -24,7 +24,7 @@ public class ExcelWriterTest {
     crosslaunchDefinition.setBuFqnPath("[Path]");
     crosslaunchDefinition.setBuHourKey("[Path].[Hour key]");
     crosslaunchDefinition.setBuKpiName("KpiName");
-    crosslaunchDefinition.setBuPrFqnPath("[Presentation].[Path]");
+    crosslaunchDefinition.setPrFqnPath("[Presentation].[Path]");
 
     ArrayList<CrosslaunchDefinition> x = new ArrayList<CrosslaunchDefinition>();
     x.add(crosslaunchDefinition);

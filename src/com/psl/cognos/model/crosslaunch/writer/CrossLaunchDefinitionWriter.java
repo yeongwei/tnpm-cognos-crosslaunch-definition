@@ -55,7 +55,7 @@ public class CrossLaunchDefinitionWriter extends Writer {
   }
 
   protected String makeKpiReference(CrosslaunchDefinition crosslaunchDefinition) {
-    return makeMember(crosslaunchDefinition.getBuPrFqnPath(),
+    return makeMember(crosslaunchDefinition.getPrFqnPath(),
         crosslaunchDefinition.getBuKpiName(),
         crosslaunchDefinition.getBuKpiName());
   }

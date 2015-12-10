@@ -149,10 +149,10 @@ public class Main {
       // "About to lookup Presentation Path for '%s'.", BUSINESS_ROW.fqnPath));
       if (presentationStore.containsKey(BUSINESS_ROW.fqnPath)) {
         String presentationPath = presentationStore.get(BUSINESS_ROW.fqnPath);
-        CROSSLAUNCH_DEFINITION.setBuPrFqnPath(presentationPath);
+        CROSSLAUNCH_DEFINITION.setPrFqnPath(presentationPath);
         numOfPrFqnFound += 1;
       } else {
-        CROSSLAUNCH_DEFINITION.setBuPrFqnPath(BUSINESS_ROW.fqnPath);
+        CROSSLAUNCH_DEFINITION.setPrFqnPath(BUSINESS_ROW.fqnPath);
         numOfPrFqnNotFound += 1;
       }
 

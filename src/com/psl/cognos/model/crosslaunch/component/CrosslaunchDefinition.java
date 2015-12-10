@@ -68,11 +68,11 @@ public class CrosslaunchDefinition {
     return this.buFqnHourKey;
   } 
   
-  public void setBuPrFqnPath(String prFqnPath) {
+  public void setPrFqnPath(String prFqnPath) {
     this.prFqnPath = prFqnPath;
   }
   
-  public String getBuPrFqnPath() {
+  public String getPrFqnPath() {
     return this.prFqnPath;
   } 
   
